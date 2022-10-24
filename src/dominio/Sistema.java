@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dominio;
 
 import java.util.ArrayList;
@@ -9,7 +5,7 @@ import java.util.Iterator;
 
 /**
  *
- * @author Emiliano Marotta 187884 - Sebastian Borja 303433
+ * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
 public class Sistema {
 

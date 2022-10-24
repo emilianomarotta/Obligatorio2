@@ -1,12 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package obligatorio2;
 
 /**
  *
- * @author Emiliano Marotta 187884 - Sebastian Borja 303433
+ * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
 public class Obligatorio2 {
 
