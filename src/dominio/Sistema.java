@@ -12,6 +12,7 @@ public class Sistema {
     private ArrayList<Articulo> listaArticulos;
     private ArrayList<Funcionario> listaFuncionarios;
     private ArrayList<Dron> listaDrones;
+    private ArrayList<Carga> listaCargas;
 
     public ArrayList<Articulo> getListaArticulos() {
         return listaArticulos;
@@ -35,6 +36,14 @@ public class Sistema {
 
     public void setListaDrones(ArrayList<Dron> listaDrones) {
         this.listaDrones = listaDrones;
+    }
+
+    public ArrayList<Carga> getListaCargas() {
+        return listaCargas;
+    }
+
+    public void setListaCargas(ArrayList<Carga> listaCargas) {
+        this.listaCargas = listaCargas;
     }
 
     public boolean nombreArticuloValido(String unNombre) {
@@ -68,5 +77,23 @@ public class Sistema {
             }
         }
         return idDronValido;
+    }
+
+    public boolean codigoCargaValido(int unNumero) {
+        boolean codigoCargaValido = true;
+        Iterator<Carga> it = this.getListaCargas().iterator();
+        while (it.hasNext() && codigoCargaValido) {
+            if (it.next().getCodigo() == unNumero) {
+                codigoCargaValido = false;
+            }
+        }
+        return codigoCargaValido;
+    }
+
+    public void egresarCarga(Carga unaCarga) {
+        unaCarga.setCodigo(-1);
+        unaCarga.setFuncionario(null);
+        unaCarga.setArticulo(null);
+        unaCarga.setCantArticulos(0);
     }
 }
