@@ -4,6 +4,8 @@
  */
 package dominio;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Emiliano Marotta 187884 - Sebastian Borja 303433
@@ -13,6 +15,7 @@ public class Dron {
     private String id;
     private String modelo;
     private int tipoCamara;
+    private ArrayList<Vuelo> listaVuelos;
 
     public Dron(String id, String modelo, int tipoCamara) {
         this.id = id;

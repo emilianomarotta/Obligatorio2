@@ -51,15 +51,26 @@ public class Sistema {
         }
         return nombreArticuloValido;
     }
-    
-        public boolean numeroFuncionarioValido(int unNumero) {
-        boolean nombreArticuloValido = true;
-        Iterator<Articulo> it = this.getListaArticulos().iterator();
-        while (it.hasNext() && nombreArticuloValido) {
-            if (it.next().getNombre().equalsIgnoreCase(unNombre)) {
-                nombreArticuloValido = false;
+
+    public boolean numeroFuncionarioValido(int unNumero) {
+        boolean numeroFuncionarioValido = true;
+        Iterator<Funcionario> it = this.getListaFuncionarios().iterator();
+        while (it.hasNext() && numeroFuncionarioValido) {
+            if (it.next().getNumero() == unNumero) {
+                numeroFuncionarioValido = false;
             }
         }
-        return nombreArticuloValido;
+        return numeroFuncionarioValido;
+    }
+
+    public boolean idDronValido(String id) {
+        boolean idDronValido = true;
+        Iterator<Dron> it = this.getListaDrones().iterator();
+        while (it.hasNext() && idDronValido) {
+            if (it.next().getId().equalsIgnoreCase(id)) {
+                idDronValido = false;
+            }
+        }
+        return idDronValido;
     }
 }
