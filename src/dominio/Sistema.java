@@ -14,6 +14,13 @@ public class Sistema {
     private ArrayList<Dron> listaDrones;
     private ArrayList<Carga> listaCargas;
 
+    public Sistema(){
+        this.listaArticulos = new ArrayList();
+        this.listaFuncionarios = new ArrayList();
+        this.listaDrones = new ArrayList();
+        this.listaCargas = new ArrayList();
+    }
+    
     public ArrayList<Articulo> getListaArticulos() {
         return listaArticulos;
     }

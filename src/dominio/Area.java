@@ -7,6 +7,10 @@ package dominio;
 public class Area {
 
     private Carga[][] cargas;
+    
+    public Area (Carga[][] unaCarga){
+        this.cargas = unaCarga;
+    }
 
     public Carga[][] getCargas() {
         return cargas;

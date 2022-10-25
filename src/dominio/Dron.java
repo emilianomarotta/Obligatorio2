@@ -13,10 +13,11 @@ public class Dron {
     private int tipoCamara;
     private ArrayList<Vuelo> listaVuelos;
 
-    public Dron(String id, String modelo, int tipoCamara) {
+    public Dron(String id, String modelo, int tipoCamara, ArrayList<Vuelo> listaVuelos) {
         this.id = id;
         this.modelo = modelo;
         this.tipoCamara = tipoCamara;
+        this.listaVuelos = listaVuelos;
     }
 
     public String getId() {
