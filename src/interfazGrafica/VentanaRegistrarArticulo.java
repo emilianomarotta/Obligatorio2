@@ -140,15 +140,20 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
         String nombreArticulo = txtNombre.getText();
         String descripcionArticulo = txtDescripcion.getText();
         boolean nombreUnico = this.getSistema().nombreArticuloValido(nombreArticulo);
-        if (nombreUnico) {
-            Articulo a = new Articulo(nombreArticulo, descripcionArticulo);
-            this.getSistema().getListaArticulos().add(a);
-            DefaultTableModel modelo = (DefaultTableModel) tableListaArticulos.getModel();
-            String[] datos = {a.getNombre(), a.getDescripcion()};
-            modelo.addRow(datos);
-            //actualizarVentana();
+        if (nombreArticulo.length() > 0) {
+            if (nombreUnico) {
+                Articulo a = new Articulo(nombreArticulo, descripcionArticulo);
+                this.getSistema().getListaArticulos().add(a);
+                DefaultTableModel modelo = (DefaultTableModel) tableListaArticulos.getModel();
+                String[] datos = {a.getNombre(), a.getDescripcion()};
+                modelo.addRow(datos);
+                //actualizarVentana();
+            } else {
+                JOptionPane.showMessageDialog(this, "El Artículo ya esta registrado en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+            }
         } else {
-            JOptionPane.showMessageDialog(this, "El Artículo ya esta registrado en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se admite nombre de artículo vacío", "Error", JOptionPane.ERROR_MESSAGE);
+
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
@@ -169,7 +174,7 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
             Articulo a = this.getSistema().getListaArticulos().get(i);
             //Inserto en la tabla
             DefaultTableModel modelo = (DefaultTableModel) tableListaArticulos.getModel();
-            
+
             /*
             Vector<String> data = new Vector<>();
             data.add(a.getNombre());
@@ -178,11 +183,11 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
             if (!modelo.getDataVector().contains(data)) {
                 modelo.addRow(data);
             }
-            */
-            
+             */
             String[] datos = {a.getNombre(), a.getDescripcion()};
-            modelo.addRow(datos);
             
+            modelo.addRow(datos);
+
         }
     }
 }

@@ -17,12 +17,18 @@ import javax.swing.table.DefaultTableModel;
 public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
 
     private Sistema sistema;
+    private Util util;
+
+    public Util getUtil() {
+        return util;
+    }
 
     /**
      * Creates new form VentanaRegistrarArticulo
      */
     public VentanaRegistrarFuncionario(Sistema s) {
         this.sistema = s;
+        this.util = new Util();
         initComponents();
         actualizarVentana();
     }
@@ -150,6 +156,29 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
+        String nombreFuncionario = txtNombre.getText();
+        int edadFuncionario = 0;
+        //Se asume numero de funcionario valido mayor 0
+        int numeroFuncionario = -1;
+
+        if (this.getUtil().nombreValido(nombreFuncionario)) {
+            edadFuncionario = this.getUtil().parsearString(txtEdad.getText(), this, "La edad debe ser un número");
+            if (!this.getUtil().edadFuncionarioValida(edadFuncionario)) {
+                JOptionPane.showMessageDialog(this, "El funcionario debe ser mayor de edad", "Error", JOptionPane.ERROR_MESSAGE);
+            } else {
+                numeroFuncionario = this.getUtil().parsearString(txtNumero.getText(), this, "El número del funcionario debe ser un número");
+                boolean numeroUnico = this.getSistema().numeroFuncionarioValido(numeroFuncionario);
+                if (numeroUnico) {
+                    Funcionario f = new Funcionario(nombreFuncionario, edadFuncionario, numeroFuncionario);
+                    this.getSistema().getListaFuncionarios().add(f);
+                } else {
+                    JOptionPane.showMessageDialog(this, "El funcionario ya está registrado en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "El nombre del funcionario debe tener más de 3 caractéres", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+
 //        String nombreArticulo = txtNombre.getText();
 //        String descripcionArticulo = txtEdad.getText();
 //        boolean nombreUnico = this.getSistema().nombreArticuloValido(nombreArticulo);

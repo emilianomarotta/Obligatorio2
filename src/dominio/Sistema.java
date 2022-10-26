@@ -14,13 +14,13 @@ public class Sistema {
     private ArrayList<Dron> listaDrones;
     private ArrayList<Carga> listaCargas;
 
-    public Sistema(){
+    public Sistema() {
         this.listaArticulos = new ArrayList();
         this.listaFuncionarios = new ArrayList();
         this.listaDrones = new ArrayList();
         this.listaCargas = new ArrayList();
     }
-    
+
     public ArrayList<Articulo> getListaArticulos() {
         return listaArticulos;
     }
@@ -73,6 +73,14 @@ public class Sistema {
             }
         }
         return numeroFuncionarioValido;
+    }
+
+    public boolean edadFuncionarioValida(int edad) {
+        boolean edadFuncionarioValida = true;
+        if (edad > 100 || edad < 18) {
+            edadFuncionarioValida = false;
+        }
+        return edadFuncionarioValida;
     }
 
     public boolean idDronValido(String id) {
