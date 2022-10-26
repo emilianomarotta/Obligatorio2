@@ -4,7 +4,7 @@
  */
 package interfazGrafica;
 
-import dominio.Articulo;
+import dominio.Funcionario;
 import dominio.Sistema;
 import java.util.Vector;
 import javax.swing.JOptionPane;
@@ -14,14 +14,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class VentanaRegistrarArticulo extends javax.swing.JFrame {
+public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
 
     private Sistema sistema;
 
     /**
      * Creates new form VentanaRegistrarArticulo
      */
-    public VentanaRegistrarArticulo(Sistema s) {
+    public VentanaRegistrarFuncionario(Sistema s) {
         this.sistema = s;
         initComponents();
         actualizarVentana();
@@ -41,19 +41,21 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
     private void initComponents() {
 
         lblNombre = new javax.swing.JLabel();
-        lblDescripcion = new javax.swing.JLabel();
+        lblEdad = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
-        txtDescripcion = new javax.swing.JTextField();
+        txtEdad = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tableListaArticulos = new javax.swing.JTable();
+        lblNumero = new javax.swing.JLabel();
+        txtNumero = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Artículos");
+        setTitle("Funcionarios");
 
         lblNombre.setText("Nombre");
 
-        lblDescripcion.setText("Descripción");
+        lblEdad.setText("Edad");
 
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
@@ -67,14 +69,14 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nombre", "Descprición"
+                "Nombre", "Edad", "Numero"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false
+                false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -85,12 +87,16 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        tableListaArticulos.setColumnSelectionAllowed(true);
         jScrollPane1.setViewportView(tableListaArticulos);
         tableListaArticulos.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         if (tableListaArticulos.getColumnModel().getColumnCount() > 0) {
             tableListaArticulos.getColumnModel().getColumn(0).setResizable(false);
             tableListaArticulos.getColumnModel().getColumn(1).setResizable(false);
+            tableListaArticulos.getColumnModel().getColumn(2).setResizable(false);
         }
+
+        lblNumero.setText("Numero");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -103,13 +109,15 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblNombre)
-                            .addComponent(lblDescripcion))
+                            .addComponent(lblEdad)
+                            .addComponent(lblNumero))
                         .addGap(23, 23, 23)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
-                            .addComponent(txtDescripcion))))
-                .addGap(38, 38, 38)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 421, Short.MAX_VALUE)
+                            .addComponent(txtEdad)
+                            .addComponent(txtNumero))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -118,18 +126,23 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
                 .addGap(33, 33, 33)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                        .addContainerGap())
+                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(lblNombre)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(21, 21, 21)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblDescripcion)
-                            .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
+                            .addComponent(lblEdad)
+                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lblNumero)
+                            .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
                         .addComponent(btnAgregar)
-                        .addGap(0, 5, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addContainerGap())
+                        .addGap(24, 24, 24))))
         );
 
         pack();
@@ -137,42 +150,44 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         // TODO add your handling code here:
-        String nombreArticulo = txtNombre.getText();
-        String descripcionArticulo = txtDescripcion.getText();
-        boolean nombreUnico = this.getSistema().nombreArticuloValido(nombreArticulo);
-        if (nombreUnico) {
-            Articulo a = new Articulo(nombreArticulo, descripcionArticulo);
-            this.getSistema().getListaArticulos().add(a);
-            actualizarVentana();
-        } else {
-            JOptionPane.showMessageDialog(this, "El Artículo ya esta registrado en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+//        String nombreArticulo = txtNombre.getText();
+//        String descripcionArticulo = txtEdad.getText();
+//        boolean nombreUnico = this.getSistema().nombreArticuloValido(nombreArticulo);
+//        if (nombreUnico) {
+//            Articulo a = new Articulo(nombreArticulo, descripcionArticulo);
+//            this.getSistema().getListaArticulos().add(a);
+//            actualizarVentana();
+//        } else {
+//            JOptionPane.showMessageDialog(this, "El Artículo ya esta registrado en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+//        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel lblDescripcion;
+    private javax.swing.JLabel lblEdad;
     private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblNumero;
     private javax.swing.JTable tableListaArticulos;
-    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNumero;
     // End of variables declaration//GEN-END:variables
 
     public void actualizarVentana() {
-        for (int i = 0; i < this.getSistema().getListaArticulos().size(); i++) {
-            //Obtengo articulos registrados en sistema
-            Articulo a = this.getSistema().getListaArticulos().get(i);
-            //Inserto en la tabla
-            Vector<String> data = new Vector<>();
-            data.add(a.getNombre());
-            data.add(a.getDescripcion());
-            DefaultTableModel modelo = (DefaultTableModel) tableListaArticulos.getModel();
-            if (!modelo.getDataVector().contains(data)) {
-                modelo.addRow(data);
-            }
-            
-        }
+//        for (int i = 0; i < this.getSistema().getListaArticulos().size(); i++) {
+//            //Obtengo articulos registrados en sistema
+//            Funcionario f = this.getSistema().getListaFuncionarios().get(i);
+//            //Inserto en la tabla
+//            Vector<String> data = new Vector<>();
+//            data.add(f.getNombre());
+//            //data.add(f.getEdad());
+//            DefaultTableModel modelo = (DefaultTableModel) tableListaArticulos.getModel();
+//            if (!modelo.getDataVector().contains(data)) {
+//                modelo.addRow(data);
+//            }
+//            
+//        }
     }
 }

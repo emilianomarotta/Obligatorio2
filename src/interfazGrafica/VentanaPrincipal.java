@@ -41,7 +41,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setTitle("Control de Inventario");
         setMaximumSize(new java.awt.Dimension(351, 400));
         setMinimumSize(new java.awt.Dimension(351, 400));
-        setPreferredSize(new java.awt.Dimension(351, 400));
         setResizable(false);
         setSize(new java.awt.Dimension(351, 400));
 
@@ -57,6 +56,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnEstadisticas.setText("Estadisticas");
 
         btnRegistrarFuncionario.setText("Registrar Funcionario");
+        btnRegistrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarFuncionarioActionPerformed(evt);
+            }
+        });
 
         btnRegistrarDron.setText("Registrar Dron");
 
@@ -69,15 +73,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(51, 51, 51)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEstadisticas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnCarga, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRegistrarFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRegistrarArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnRegistrarDron, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lblTitulo, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(67, Short.MAX_VALUE))
+                    .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 233, Short.MAX_VALUE))
+                .addGap(58, 58, 58))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,15 +89,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(lblTitulo, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)
                 .addGap(18, 18, 18)
-                .addComponent(btnRegistrarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegistrarArticulo, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRegistrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegistrarFuncionario, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnRegistrarDron, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRegistrarDron, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnCarga, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEstadisticas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnEstadisticas, javax.swing.GroupLayout.DEFAULT_SIZE, 45, Short.MAX_VALUE)
                 .addGap(35, 35, 35))
         );
 
@@ -106,6 +110,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         VentanaRegistrarArticulo vRegistrarArticulo = new VentanaRegistrarArticulo(this.getSistema());
         vRegistrarArticulo.setVisible(true);
     }//GEN-LAST:event_btnRegistrarArticuloActionPerformed
+
+    private void btnRegistrarFuncionarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarFuncionarioActionPerformed
+        // TODO add your handling code here:
+        VentanaRegistrarFuncionario vRegistrarFuncionario = new VentanaRegistrarFuncionario(this.getSistema());
+        vRegistrarFuncionario.setVisible(true);
+    }//GEN-LAST:event_btnRegistrarFuncionarioActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
