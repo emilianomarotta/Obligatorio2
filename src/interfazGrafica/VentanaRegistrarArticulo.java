@@ -143,7 +143,10 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
         if (nombreUnico) {
             Articulo a = new Articulo(nombreArticulo, descripcionArticulo);
             this.getSistema().getListaArticulos().add(a);
-            actualizarVentana();
+            DefaultTableModel modelo = (DefaultTableModel) tableListaArticulos.getModel();
+            String[] datos = {a.getNombre(), a.getDescripcion()};
+            modelo.addRow(datos);
+            //actualizarVentana();
         } else {
             JOptionPane.showMessageDialog(this, "El Artículo ya esta registrado en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -165,13 +168,20 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
             //Obtengo articulos registrados en sistema
             Articulo a = this.getSistema().getListaArticulos().get(i);
             //Inserto en la tabla
+            DefaultTableModel modelo = (DefaultTableModel) tableListaArticulos.getModel();
+            
+            /*
             Vector<String> data = new Vector<>();
             data.add(a.getNombre());
             data.add(a.getDescripcion());
-            DefaultTableModel modelo = (DefaultTableModel) tableListaArticulos.getModel();
+            
             if (!modelo.getDataVector().contains(data)) {
                 modelo.addRow(data);
             }
+            */
+            
+            String[] datos = {a.getNombre(), a.getDescripcion()};
+            modelo.addRow(datos);
             
         }
     }
