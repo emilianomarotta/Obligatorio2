@@ -52,7 +52,7 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
         txtEdad = new javax.swing.JTextField();
         btnAgregar = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        tableListaArticulos = new javax.swing.JTable();
+        tableListaFuncionarios = new javax.swing.JTable();
         lblNumero = new javax.swing.JLabel();
         txtNumero = new javax.swing.JTextField();
 
@@ -70,7 +70,7 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
             }
         });
 
-        tableListaArticulos.setModel(new javax.swing.table.DefaultTableModel(
+        tableListaFuncionarios.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -93,13 +93,13 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        tableListaArticulos.setColumnSelectionAllowed(true);
-        jScrollPane1.setViewportView(tableListaArticulos);
-        tableListaArticulos.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        if (tableListaArticulos.getColumnModel().getColumnCount() > 0) {
-            tableListaArticulos.getColumnModel().getColumn(0).setResizable(false);
-            tableListaArticulos.getColumnModel().getColumn(1).setResizable(false);
-            tableListaArticulos.getColumnModel().getColumn(2).setResizable(false);
+        tableListaFuncionarios.setColumnSelectionAllowed(true);
+        jScrollPane1.setViewportView(tableListaFuncionarios);
+        tableListaFuncionarios.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        if (tableListaFuncionarios.getColumnModel().getColumnCount() > 0) {
+            tableListaFuncionarios.getColumnModel().getColumn(0).setResizable(false);
+            tableListaFuncionarios.getColumnModel().getColumn(1).setResizable(false);
+            tableListaFuncionarios.getColumnModel().getColumn(2).setResizable(false);
         }
 
         lblNumero.setText("Numero");
@@ -162,19 +162,38 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
         int numeroFuncionario = -1;
 
         if (this.getUtil().nombreValido(nombreFuncionario)) {
-            edadFuncionario = this.getUtil().parsearString(txtEdad.getText(), this, "La edad debe ser un número");
-            if (!this.getUtil().edadFuncionarioValida(edadFuncionario)) {
-                JOptionPane.showMessageDialog(this, "El funcionario debe ser mayor de edad", "Error", JOptionPane.ERROR_MESSAGE);
-            } else {
-                numeroFuncionario = this.getUtil().parsearString(txtNumero.getText(), this, "El número del funcionario debe ser un número");
-                boolean numeroUnico = this.getSistema().numeroFuncionarioValido(numeroFuncionario);
-                if (numeroUnico) {
-                    Funcionario f = new Funcionario(nombreFuncionario, edadFuncionario, numeroFuncionario);
-                    this.getSistema().getListaFuncionarios().add(f);
+            //
+            //Parseo la edad a entero para guardar el funcionario
+            try {
+                edadFuncionario = Integer.parseInt(txtEdad.getText());
+                if (!this.getUtil().edadFuncionarioValida(edadFuncionario)) {
+                    JOptionPane.showMessageDialog(this, "El funcionario debe ser mayor de edad", "Error", JOptionPane.ERROR_MESSAGE);
                 } else {
-                    JOptionPane.showMessageDialog(this, "El funcionario ya está registrado en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+                    try {
+                        numeroFuncionario = Integer.parseInt(txtNumero.getText());
+                        boolean numeroUnico = this.getSistema().numeroFuncionarioValido(numeroFuncionario);
+                        if (numeroUnico) {
+                            Funcionario f = new Funcionario(nombreFuncionario, edadFuncionario, numeroFuncionario);
+                            this.getSistema().getListaFuncionarios().add(f);
+                            String[] fDatos = {f.getNombre(), Integer.toString(f.getEdad()), Integer.toString(f.getNumero())};
+
+                            DefaultTableModel modelo = (DefaultTableModel) tableListaFuncionarios.getModel();
+                            modelo.addRow(fDatos);
+                        } else {
+                            JOptionPane.showMessageDialog(this, "El funcionario ya está registrado en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } catch (NumberFormatException e) {
+                        JOptionPane.showMessageDialog(this, "El número de funcionario debe ser un número", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
+
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "La edad debe ser un número", "Error", JOptionPane.ERROR_MESSAGE);
             }
+
+            //
+            //
+            //
         } else {
             JOptionPane.showMessageDialog(this, "El nombre del funcionario debe tener más de 3 caractéres", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -198,25 +217,22 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel lblEdad;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblNumero;
-    private javax.swing.JTable tableListaArticulos;
+    private javax.swing.JTable tableListaFuncionarios;
     private javax.swing.JTextField txtEdad;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNumero;
     // End of variables declaration//GEN-END:variables
 
     public void actualizarVentana() {
-//        for (int i = 0; i < this.getSistema().getListaArticulos().size(); i++) {
+        for (int i = 0; i < this.getSistema().getListaFuncionarios().size(); i++) {
 //            //Obtengo articulos registrados en sistema
-//            Funcionario f = this.getSistema().getListaFuncionarios().get(i);
-//            //Inserto en la tabla
-//            Vector<String> data = new Vector<>();
-//            data.add(f.getNombre());
-//            //data.add(f.getEdad());
-//            DefaultTableModel modelo = (DefaultTableModel) tableListaArticulos.getModel();
-//            if (!modelo.getDataVector().contains(data)) {
-//                modelo.addRow(data);
-//            }
-//            
-//        }
+            Funcionario f = this.getSistema().getListaFuncionarios().get(i);
+            String[] fDatos = {f.getNombre(), Integer.toString(f.getEdad()), Integer.toString(f.getNumero())};
+
+            DefaultTableModel modelo = (DefaultTableModel) tableListaFuncionarios.getModel();
+            modelo.addRow(fDatos);
+
+        }
+
     }
 }
