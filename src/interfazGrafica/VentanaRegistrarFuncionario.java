@@ -122,33 +122,31 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
                             .addComponent(txtNombre, javax.swing.GroupLayout.DEFAULT_SIZE, 120, Short.MAX_VALUE)
                             .addComponent(txtEdad)
                             .addComponent(txtNumero))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 349, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(36, 36, 36)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 302, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblNombre)
-                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(21, 21, 21)
+                            .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNombre))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblEdad)
-                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(28, 28, 28)
+                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblEdad))
+                        .addGap(17, 17, 17)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(lblNumero)
-                            .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
-                        .addComponent(btnAgregar)
-                        .addGap(24, 24, 24))))
+                            .addComponent(txtNumero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblNumero))
+                        .addGap(32, 32, 32)
+                        .addComponent(btnAgregar))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 177, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap())
         );
 
         pack();
@@ -162,7 +160,6 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
         int numeroFuncionario = -1;
 
         if (this.getUtil().nombreValido(nombreFuncionario)) {
-            //
             //Parseo la edad a entero para guardar el funcionario
             try {
                 edadFuncionario = Integer.parseInt(txtEdad.getText());
@@ -197,17 +194,6 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "El nombre del funcionario debe tener más de 3 caractéres", "Error", JOptionPane.ERROR_MESSAGE);
         }
-
-//        String nombreArticulo = txtNombre.getText();
-//        String descripcionArticulo = txtEdad.getText();
-//        boolean nombreUnico = this.getSistema().nombreArticuloValido(nombreArticulo);
-//        if (nombreUnico) {
-//            Articulo a = new Articulo(nombreArticulo, descripcionArticulo);
-//            this.getSistema().getListaArticulos().add(a);
-//            actualizarVentana();
-//        } else {
-//            JOptionPane.showMessageDialog(this, "El Artículo ya esta registrado en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
-//        }
     }//GEN-LAST:event_btnAgregarActionPerformed
 
 
@@ -225,10 +211,11 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
 
     public void actualizarVentana() {
         for (int i = 0; i < this.getSistema().getListaFuncionarios().size(); i++) {
-//            //Obtengo articulos registrados en sistema
+            //Obtengo funcionarios registrados en sistema
             Funcionario f = this.getSistema().getListaFuncionarios().get(i);
             String[] fDatos = {f.getNombre(), Integer.toString(f.getEdad()), Integer.toString(f.getNumero())};
 
+            //Los agrego a la tabla
             DefaultTableModel modelo = (DefaultTableModel) tableListaFuncionarios.getModel();
             modelo.addRow(fDatos);
 

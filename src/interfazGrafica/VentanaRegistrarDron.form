@@ -25,73 +25,83 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-              <Group type="103" groupAlignment="1" attributes="0">
-                  <Component id="btnAgregar" min="-2" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="lblNombre" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblEdad" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblNumero" alignment="0" min="-2" max="-2" attributes="0"/>
-                      </Group>
                       <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="txtNombre" pref="120" max="32767" attributes="0"/>
-                          <Component id="txtEdad" max="32767" attributes="0"/>
-                          <Component id="txtNumero" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Component id="lblIdentificacion" alignment="0" min="-2" max="-2" attributes="0"/>
+                                  <Component id="lblModelo" alignment="0" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="23" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="txtModelo" min="-2" pref="120" max="-2" attributes="0"/>
+                                  <Component id="txtIdentificacion" min="-2" pref="120" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="lblTipoDeCamara" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="spnTipoDeCamara" min="-2" pref="51" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
                   </Group>
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="btnAgregar" min="-2" max="-2" attributes="0"/>
+                  </Group>
               </Group>
-              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" pref="302" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace pref="51" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="327" max="-2" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Group type="102" alignment="1" attributes="0">
-              <EmptySpace pref="26" max="32767" attributes="0"/>
-              <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="1" attributes="0">
+                  <Component id="jScrollPane1" alignment="1" min="-2" pref="181" max="-2" attributes="0"/>
+                  <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtNombre" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblNombre" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lblIdentificacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtIdentificacion" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="lblModelo" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtModelo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtEdad" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblEdad" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="spnTipoDeCamara" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
+                          <Component id="lblTipoDeCamara" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="txtNumero" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="lblNumero" alignment="3" min="-2" max="-2" attributes="0"/>
-                      </Group>
-                      <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnAgregar" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <Component id="jScrollPane1" min="-2" pref="177" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JLabel" name="lblNombre">
+    <Component class="javax.swing.JLabel" name="lblIdentificacion">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Nombre"/>
+        <Property name="text" type="java.lang.String" value="Identificaci&#xf3;n"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="lblEdad">
+    <Component class="javax.swing.JLabel" name="lblModelo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Edad"/>
+        <Property name="text" type="java.lang.String" value="Modelo"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNombre">
+    <Component class="javax.swing.JTextField" name="txtIdentificacion">
     </Component>
-    <Component class="javax.swing.JTextField" name="txtEdad">
+    <Component class="javax.swing.JTextField" name="txtModelo">
     </Component>
     <Component class="javax.swing.JButton" name="btnAgregar">
       <Properties>
@@ -108,13 +118,13 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="tableListaFuncionarios">
+        <Component class="javax.swing.JTable" name="tableListaDrones">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
               <Table columnCount="3" rowCount="0">
-                <Column editable="false" title="Nombre" type="java.lang.String"/>
-                <Column editable="false" title="Edad" type="java.lang.String"/>
-                <Column editable="false" title="Numero" type="java.lang.String"/>
+                <Column editable="false" title="Identificaci&#xf3;n" type="java.lang.String"/>
+                <Column editable="false" title="Modelo" type="java.lang.String"/>
+                <Column editable="false" title="Tipo de Camara" type="java.lang.Object"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
@@ -144,12 +154,20 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JLabel" name="lblNumero">
+    <Component class="javax.swing.JLabel" name="lblTipoDeCamara">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Numero"/>
+        <Property name="text" type="java.lang.String" value="Tipo de Camara"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JTextField" name="txtNumero">
+    <Component class="javax.swing.JSpinner" name="spnTipoDeCamara">
+      <Properties>
+        <Property name="model" type="javax.swing.SpinnerModel" editor="org.netbeans.modules.form.editors2.SpinnerModelEditor">
+          <SpinnerModel initial="1" maximum="6" minimum="1" numberType="java.lang.Integer" stepSize="1" type="number"/>
+        </Property>
+        <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+          <Color id="Default Cursor"/>
+        </Property>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>
