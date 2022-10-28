@@ -143,10 +143,11 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
             if (nombreUnico) {
                 Articulo a = new Articulo(nombreArticulo, descripcionArticulo);
                 this.getSistema().getListaArticulos().add(a);
-                DefaultTableModel modelo = (DefaultTableModel) tableListaArticulos.getModel();
-                String[] datos = {a.getNombre(), a.getDescripcion()};
-                modelo.addRow(datos);
-                //actualizarVentana();
+
+//                DefaultTableModel modelo = (DefaultTableModel) tableListaArticulos.getModel();
+//                String[] datos = {a.getNombre(), a.getDescripcion()};
+//                modelo.addRow(datos);
+                   actualizarVentana();
             } else {
                 JOptionPane.showMessageDialog(this, "El Artículo ya esta registrado en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -168,11 +169,18 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void actualizarVentana() {
+//        DefaultTableModel modelo = new DefaultTableModel();
+//        tableListaArticulos.setModel(modelo);
+
+        DefaultTableModel modelo = (DefaultTableModel) tableListaArticulos.getModel();
+        
+        modelo.setRowCount(0);
+
         for (int i = 0; i < this.getSistema().getListaArticulos().size(); i++) {
             //Obtengo articulos registrados en sistema
             Articulo a = this.getSistema().getListaArticulos().get(i);
             //Inserto en la tabla
-            DefaultTableModel modelo = (DefaultTableModel) tableListaArticulos.getModel();
+            //   DefaultTableModel modelo = (DefaultTableModel) tableListaArticulos.getModel();
 
             /*
             Vector<String> data = new Vector<>();
@@ -184,7 +192,7 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
             }
              */
             String[] datos = {a.getNombre(), a.getDescripcion()};
-            
+
             modelo.addRow(datos);
 
         }

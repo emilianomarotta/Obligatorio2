@@ -5,7 +5,6 @@
 package interfazGrafica;
 
 import dominio.Dron;
-import dominio.Funcionario;
 import dominio.Sistema;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -54,7 +53,7 @@ public class VentanaRegistrarDron extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableListaDrones = new javax.swing.JTable();
         lblTipoDeCamara = new javax.swing.JLabel();
-        spnTipoDeCamara = new javax.swing.JSpinner();
+        cBoxTipoCamara = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Funcionarios");
@@ -104,8 +103,7 @@ public class VentanaRegistrarDron extends javax.swing.JFrame {
 
         lblTipoDeCamara.setText("Tipo de Camara");
 
-        spnTipoDeCamara.setModel(new javax.swing.SpinnerNumberModel(1, 1, 6, 1));
-        spnTipoDeCamara.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cBoxTipoCamara.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -127,11 +125,12 @@ public class VentanaRegistrarDron extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(lblTipoDeCamara)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(spnTipoDeCamara, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(cBoxTipoCamara, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(btnAgregar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                        .addComponent(btnAgregar)
+                        .addGap(51, 51, 51)))
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 327, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -151,8 +150,8 @@ public class VentanaRegistrarDron extends javax.swing.JFrame {
                             .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(spnTipoDeCamara, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblTipoDeCamara))
+                            .addComponent(lblTipoDeCamara)
+                            .addComponent(cBoxTipoCamara, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addComponent(btnAgregar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -165,7 +164,7 @@ public class VentanaRegistrarDron extends javax.swing.JFrame {
         // TODO add your handling code here:
         String idDron = txtIdentificacion.getText();
         String modeloDron = txtModelo.getText();
-        int tipoCamara = (int) spnTipoDeCamara.getValue();
+        int tipoCamara = Integer.parseInt((String)cBoxTipoCamara.getSelectedItem());
         //Chequeo si quieren registrar un Dron vacio o un modelo vacio
         if (!idDron.isEmpty() && !modeloDron.isEmpty()) {
             //Chequeo que no este registrado
@@ -188,11 +187,11 @@ public class VentanaRegistrarDron extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
+    private javax.swing.JComboBox cBoxTipoCamara;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lblIdentificacion;
     private javax.swing.JLabel lblModelo;
     private javax.swing.JLabel lblTipoDeCamara;
-    private javax.swing.JSpinner spnTipoDeCamara;
     private javax.swing.JTable tableListaDrones;
     private javax.swing.JTextField txtIdentificacion;
     private javax.swing.JTextField txtModelo;
