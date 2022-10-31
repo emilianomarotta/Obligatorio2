@@ -7,7 +7,7 @@ import dominio.Sistema;
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
 public class VentanaPrincipal extends javax.swing.JFrame {
-    
+
     private Sistema sistema;
 
     public VentanaPrincipal(Sistema s) {
@@ -18,8 +18,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     public Sistema getSistema() {
         return sistema;
     }
-    
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,6 +51,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         btnCarga.setText("Ingreso/Egreso Manual de Carga");
+        btnCarga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargaActionPerformed(evt);
+            }
+        });
 
         btnEstadisticas.setText("Estadisticas");
 
@@ -143,6 +146,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_btnEstadisticas1ActionPerformed
+
+    private void btnCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaActionPerformed
+        VentanaIngresoEgresoCarga vIngresoEgreso = new VentanaIngresoEgresoCarga();
+        vIngresoEgreso.setVisible(true);
+    }//GEN-LAST:event_btnCargaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

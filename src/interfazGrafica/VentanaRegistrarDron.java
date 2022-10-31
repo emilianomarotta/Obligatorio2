@@ -103,7 +103,7 @@ public class VentanaRegistrarDron extends javax.swing.JFrame {
 
         lblTipoDeCamara.setText("Tipo de Camara");
 
-        cBoxTipoCamara.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6" }));
+        cBoxTipoCamara.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "1", "2", "3", "4", "5", "6" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,12 +164,12 @@ public class VentanaRegistrarDron extends javax.swing.JFrame {
         // TODO add your handling code here:
         String idDron = txtIdentificacion.getText();
         String modeloDron = txtModelo.getText();
-        int tipoCamara = Integer.parseInt((String)cBoxTipoCamara.getSelectedItem());
-        //Chequeo si quieren registrar un Dron vacio o un modelo vacio
-        if (!idDron.isEmpty() && !modeloDron.isEmpty()) {
+        //Chequeo que todos los campos esten completos  
+        if (!idDron.isEmpty() && !modeloDron.isEmpty() && !cBoxTipoCamara.getSelectedItem().equals("-")) {
             //Chequeo que no este registrado
             if (this.getSistema().idDronValido(idDron)) {
                 //Si todo esta ok, lo agrego a la lista y a la tabla de la interfaz
+                int tipoCamara = Integer.parseInt((String) cBoxTipoCamara.getSelectedItem());
                 Dron d = new Dron(idDron, modeloDron, tipoCamara);
                 String[] dDatos = {d.getId(), d.getModelo(), Integer.toString(d.getTipoCamara())};
                 this.getSistema().getListaDrones().add(d);
