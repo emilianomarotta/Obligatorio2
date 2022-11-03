@@ -32,7 +32,10 @@ public class Obligatorio2 {
         s.getListaDrones().add(new Dron("BZ542", "V1", 1));
         s.getListaDrones().add(new Dron("ZC09O", "FAST", 6));
         
-        s.getListaAreas()[0].getCargas()[0][0].setArticulo(pasta);
+        s.getListaAreas()[1].getCargas()[0][0].setArticulo(pasta);
+                s.getListaAreas()[1].getCargas()[0][0].setCodigo(34343);
+
+ s.getListaAreas()[1].getCargas()[0][0].setFuncionario(new Funcionario("Pepe", 20, 2));
 
         /* FIN DATOS PRECARGADOS */
         

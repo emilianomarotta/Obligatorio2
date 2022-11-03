@@ -30,4 +30,8 @@ public class Articulo {
         this.descripcion = descripcion;
     }
 
+    @Override
+    public String toString() {
+        return this.getNombre();
+    }
 }
