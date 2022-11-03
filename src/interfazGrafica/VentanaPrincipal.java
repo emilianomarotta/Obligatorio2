@@ -148,7 +148,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEstadisticas1ActionPerformed
 
     private void btnCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaActionPerformed
-        VentanaIngresoEgresoCarga vIngresoEgreso = new VentanaIngresoEgresoCarga();
+        VentanaIngresoEgresoCarga vIngresoEgreso = new VentanaIngresoEgresoCarga(this.getSistema());
         vIngresoEgreso.setVisible(true);
     }//GEN-LAST:event_btnCargaActionPerformed
 

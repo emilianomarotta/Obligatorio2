@@ -20,6 +20,7 @@ public class Obligatorio2 {
         s.getListaArticulos().add(new Articulo("Shampo ClearMen", "Anticaspa de 400ml"));
         s.getListaArticulos().add(new Articulo("Cubierta Auto", "165/30/13"));
         s.getListaArticulos().add(new Articulo("Detergente Cif", "Frasco de 500ml"));
+        Articulo pasta = new Articulo("Pasta Colgate", "Pomo de 200gr");
 
         s.getListaFuncionarios().add(new Funcionario("Pepe", 20, 2));
         s.getListaFuncionarios().add(new Funcionario("Jorge", 30, 4));
@@ -30,6 +31,8 @@ public class Obligatorio2 {
         s.getListaDrones().add(new Dron("AK674F", "V2.5", 3));
         s.getListaDrones().add(new Dron("BZ542", "V1", 1));
         s.getListaDrones().add(new Dron("ZC09O", "FAST", 6));
+        
+        s.getListaAreas()[0].getCargas()[0][0].setArticulo(pasta);
 
         /* FIN DATOS PRECARGADOS */
         

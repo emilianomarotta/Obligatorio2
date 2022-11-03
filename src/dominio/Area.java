@@ -8,10 +8,10 @@ public class Area {
 
     private Carga[][] cargas;
     private String area;
-    
-    public Area (String unArea){
+
+    public Area(String unArea) {
         this.area = unArea;
-        this.cargas = new Carga[10][12];
+        this.cargas = crearCargas();
     }
 
     public Carga[][] getCargas() {
@@ -29,8 +29,15 @@ public class Area {
     public void setArea(String area) {
         this.area = area;
     }
-    
-    
-    
-    
+
+    public Carga[][] crearCargas() {
+        Carga ret[][] = new Carga[12][10];
+        for (int i = 0; i < 12; i++) {
+            for (int j = 0; j < 10; j++) {
+                ret[i][j] = new Carga();
+            }
+        }
+        return ret;
+    }
+
 }
