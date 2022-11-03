@@ -133,7 +133,10 @@ public class Sistema {
                 posArea = i;
             }
         }
-        areas[area]
+        
+        Carga[][] tableroCargas = areas[posArea].getCargas();
+        
+        //stableroCargas[fila][col].s
     }
 
     public Area[] crearAreas() {
