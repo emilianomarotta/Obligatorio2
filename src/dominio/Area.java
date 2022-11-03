@@ -7,9 +7,11 @@ package dominio;
 public class Area {
 
     private Carga[][] cargas;
+    private String area;
     
-    public Area (Carga[][] unaCarga){
-        this.cargas = unaCarga;
+    public Area (String unArea){
+        this.area = unArea;
+        this.cargas = new Carga[10][12];
     }
 
     public Carga[][] getCargas() {
@@ -19,6 +21,16 @@ public class Area {
     public void setCargas(Carga[][] cargas) {
         this.cargas = cargas;
     }
+
+    public String getArea() {
+        return area;
+    }
+
+    public void setArea(String area) {
+        this.area = area;
+    }
+    
+    
     
     
 }

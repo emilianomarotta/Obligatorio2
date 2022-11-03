@@ -13,12 +13,14 @@ public class Sistema {
     private ArrayList<Funcionario> listaFuncionarios;
     private ArrayList<Dron> listaDrones;
     private ArrayList<Carga> listaCargas;
+    private Area[] listaAreas;
 
     public Sistema() {
         this.listaArticulos = new ArrayList();
         this.listaFuncionarios = new ArrayList();
         this.listaDrones = new ArrayList();
         this.listaCargas = new ArrayList();
+        this.listaAreas = crearAreas();
     }
 
     public ArrayList<Articulo> getListaArticulos() {
@@ -52,6 +54,16 @@ public class Sistema {
     public void setListaCargas(ArrayList<Carga> listaCargas) {
         this.listaCargas = listaCargas;
     }
+
+    public Area[] getListaAreas() {
+        return listaAreas;
+    }
+
+    public void setListaAreas(Area[] listaAreas) {
+        this.listaAreas = listaAreas;
+    }
+    
+    
 
     public boolean nombreArticuloValido(String unNombre) {
         boolean nombreArticuloValido = true;
@@ -110,5 +122,29 @@ public class Sistema {
         unaCarga.setFuncionario(null);
         unaCarga.setArticulo(null);
         unaCarga.setCantArticulos(0);
+    }
+    
+    public void ingresarCarga(Carga unaCarga,  String area, int fila, int col){
+        Area[] areas = this.getListaAreas();
+        String nombreAreas = "ABCDE";
+        int posArea = -1;
+        for (int i = 0; i < nombreAreas.length(); i++) {
+            if (nombreAreas.charAt(i) == area.charAt(0)) {
+                posArea = i;
+            }
+        }
+        areas[area]
+    }
+
+    public Area[] crearAreas() {
+        Area[] ret = new Area[5];
+        
+        String nombreAreas = "ABCDE";
+        //Le agrega el nombre correspondiente a cada area.
+        for (int i = 0; i < ret.length; i++) {
+            ret[i] = new Area(nombreAreas.charAt(i) + "");
+        }
+        
+        return ret;
     }
 }
