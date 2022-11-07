@@ -62,8 +62,6 @@ public class Sistema {
     public void setListaAreas(Area[] listaAreas) {
         this.listaAreas = listaAreas;
     }
-    
-    
 
     public boolean nombreArticuloValido(String unNombre) {
         boolean nombreArticuloValido = true;
@@ -118,37 +116,34 @@ public class Sistema {
     }
 
     public void egresarCarga(Carga unaCarga) {
+        this.getListaCargas().remove(unaCarga);
         unaCarga.setCodigo(-1);
         unaCarga.setFuncionario(null);
         unaCarga.setArticulo(null);
         unaCarga.setCantArticulos(0);
     }
-    
-    public void ingresarCarga(Carga unaCarga,  String area, int fila, int col){
+
+    public void ingresarCarga(int area, int fila, int col, Funcionario f, Articulo a, int cantidad, int codigo) {
         Area[] areas = this.getListaAreas();
-        String nombreAreas = "ABCDE";
-        int posArea = -1;
-        for (int i = 0; i < nombreAreas.length(); i++) {
-            if (nombreAreas.charAt(i) == area.charAt(0)) {
-                posArea = i;
-            }
-        }
-        
-        Carga[][] tableroCargas = areas[posArea].getCargas();
-        
-        //stableroCargas[fila][col].s
+        Carga[][] tableroCargas = areas[area].getCargas();
+        tableroCargas[fila][col].setFuncionario(f);
+        tableroCargas[fila][col].setArticulo(a);
+        tableroCargas[fila][col].setCantArticulos(cantidad);
+        tableroCargas[fila][col].setCodigo(codigo);
+        this.getListaCargas().add(tableroCargas[fila][col]);
     }
 
     public Area[] crearAreas() {
         Area[] ret = new Area[5];
-        
+
         String nombreAreas = "ABCDE";
         //Le agrega el nombre correspondiente a cada area.
         for (int i = 0; i < ret.length; i++) {
             ret[i] = new Area(nombreAreas.charAt(i) + "");
-            
+
         }
-        
+
         return ret;
     }
+
 }

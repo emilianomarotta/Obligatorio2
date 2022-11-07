@@ -4,7 +4,9 @@
  */
 package interfazGrafica;
 
+import dominio.Articulo;
 import dominio.Carga;
+import dominio.Funcionario;
 import dominio.Sistema;
 import java.awt.Color;
 import java.awt.Insets;
@@ -21,11 +23,15 @@ import javax.swing.JOptionPane;
 public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
 
     private Sistema sistema;
+    private Util util;
     private int areaActual;
     private Carga cargaSeleccionada;
+    private int filaSeleccionda;
+    private int columnaSeleccionada;
 
     public VentanaIngresoEgresoCarga(Sistema s) {
         this.sistema = s;
+        this.util = new Util();
         this.areaActual = 0;
         initComponents();
         actualizarPantalla();
@@ -34,12 +40,32 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
 
     }
 
+    public Util getUtil() {
+        return util;
+    }
+
     public int getAreaActual() {
         return areaActual;
     }
 
     public void setAreaActual(int areaActual) {
         this.areaActual = areaActual;
+    }
+
+    public int getFilaSeleccionda() {
+        return filaSeleccionda;
+    }
+
+    public void setFilaSeleccionda(int filaSeleccionda) {
+        this.filaSeleccionda = filaSeleccionda;
+    }
+
+    public int getColumnaSeleccionada() {
+        return columnaSeleccionada;
+    }
+
+    public void setColumnaSeleccionada(int columnaSeleccionada) {
+        this.columnaSeleccionada = columnaSeleccionada;
     }
 
     public void crearGrilla() {
@@ -56,11 +82,20 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
         }
     }
 
+    public void actualizarColorBotones() {
+        for (int i = 0; i < panelEspacios.getComponentCount(); i++) {
+            JButton boton = (JButton) panelEspacios.getComponent(i);
+            boton.setBackground(Color.GRAY);
+
+        }
+    }
+
     public void actualizarPantalla() {
         String area = "ABCDE";
         lblArea.setText("Area: " + area.charAt(this.getAreaActual()) + "");
         panelEgreso.setVisible(false);
         panelIngreso.setVisible(false);
+        actualizarColorBotones();
     }
 
     public void actualizarListas() {
@@ -142,6 +177,11 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
         lblCodigoIngreso.setText("Código");
 
         btnIngresar.setText("Ingresar");
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresarActionPerformed(evt);
+            }
+        });
 
         jListFuncionarios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
         jScrollPane1.setViewportView(jListFuncionarios);
@@ -344,6 +384,7 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
             actualizarPantalla();
         }
 
+
     }//GEN-LAST:event_btnAreaSiguienteActionPerformed
 
     private void btnAreaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAreaAnteriorActionPerformed
@@ -358,6 +399,38 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
         actualizarPantalla();
         JOptionPane.showMessageDialog(this, "Carga egresada correctamente", "OK", JOptionPane.INFORMATION_MESSAGE);
     }//GEN-LAST:event_btnEgresarActionPerformed
+
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        Funcionario f = (Funcionario) jListFuncionarios.getSelectedValue();
+        Articulo a = (Articulo) jListArticulos.getSelectedValue();
+        if (f != null) {
+            if (a != null) {
+                if (this.getUtil().esNumeroValido(txtCantidad.getText())) {
+                    int cantidad = Integer.parseInt(txtCantidad.getText());
+                    if (this.getUtil().esNumeroValido(txtCodigo.getText())) {
+                        int codigo = Integer.parseInt(txtCodigo.getText());
+                        if (this.sistema.codigoCargaValido(codigo)) {
+                            this.sistema.ingresarCarga(this.getAreaActual(), this.getFilaSeleccionda(), this.getColumnaSeleccionada(), f, a, cantidad, codigo);
+                            System.out.println("listo pa agregar");
+                        } else {
+                            JOptionPane.showMessageDialog(this, "El código de carga ya está registrado", "Error", JOptionPane.ERROR_MESSAGE);
+
+                        }
+
+                    } else {
+                        JOptionPane.showMessageDialog(this, "El código debe ser un número", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(this, "La cantidad debe ser un número", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            } else {
+                JOptionPane.showMessageDialog(this, "Debe seleccionar un artículo", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Debe seleccionar un funcionario", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+    }//GEN-LAST:event_btnIngresarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -397,15 +470,18 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
 
         public void actionPerformed(ActionEvent e) {
             // este código se ejecutará al presionar el botón, obtengo cuál botón
+            actualizarColorBotones();
             JButton cual = ((JButton) e.getSource());
+            cual.setBackground(Color.red);
             String textoBoton[] = cual.getText().split(":");
             int fila = Integer.parseInt(textoBoton[0]) - 1;
             int columna = Integer.parseInt(textoBoton[1]) - 1;
-
             if (sistema.getListaAreas()[areaActual].getCargas()[fila][columna].getCodigo() == -1) {
                 panelIngreso.setVisible(true);
                 panelEgreso.setVisible(false);
                 actualizarListas();
+                filaSeleccionda = fila;
+                columnaSeleccionada = columna;
             } else {
                 panelEgreso.setVisible(true);
                 panelIngreso.setVisible(false);
@@ -415,9 +491,7 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
                 lblArticulo.setText(carga.getArticulo().getNombre());
                 lblCantidadEgreso.setText(carga.getCantArticulos() + "");
                 lblFuncionario.setText(carga.getFuncionario().getNombre());
-
             }
-            // código a completar según el botón presionado
         }
     }
 }

@@ -9,14 +9,15 @@ import javax.swing.JOptionPane;
  */
 public class Util {
 
-    public int parsearString(String texto, Component c, String mensaje) {
-        int ret = -1;
+    public boolean esNumeroValido(String texto) {
+        boolean retorno = false;
         try {
-            ret = Integer.parseInt(texto);
+            int num = Integer.parseInt(texto);
+            retorno = true;
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(c, mensaje, "Error", JOptionPane.ERROR_MESSAGE);
+            retorno = false;
         }
-        return ret;
+        return retorno;
     }
 
     public boolean edadFuncionarioValida(int edad) {
