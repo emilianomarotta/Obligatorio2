@@ -28,19 +28,21 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         btnRegistrarArticulo = new javax.swing.JButton();
-        btnCarga = new javax.swing.JButton();
+        btnRegistroVuelo = new javax.swing.JButton();
         btnEstadisticas = new javax.swing.JButton();
         btnRegistrarFuncionario = new javax.swing.JButton();
         btnRegistrarDron = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
         btnEstadisticas1 = new javax.swing.JButton();
+        btnCarga = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Control de Inventario");
-        setMaximumSize(new java.awt.Dimension(351, 440));
-        setMinimumSize(new java.awt.Dimension(351, 440));
+        setMaximumSize(new java.awt.Dimension(351, 530));
+        setMinimumSize(new java.awt.Dimension(351, 530));
+        setPreferredSize(new java.awt.Dimension(351, 530));
         setResizable(false);
-        setSize(new java.awt.Dimension(351, 440));
+        setSize(new java.awt.Dimension(351, 530));
 
         btnRegistrarArticulo.setText("Registrar Artículo");
         btnRegistrarArticulo.addActionListener(new java.awt.event.ActionListener() {
@@ -49,10 +51,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnCarga.setText("Ingreso/Egreso Manual de Carga");
-        btnCarga.addActionListener(new java.awt.event.ActionListener() {
+        btnRegistroVuelo.setText("Registro de Vuelo");
+        btnRegistroVuelo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCargaActionPerformed(evt);
+                btnRegistroVueloActionPerformed(evt);
             }
         });
 
@@ -83,6 +85,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        btnCarga.setText("Ingreso/Egreso Manual de Carga");
+        btnCarga.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCargaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,8 +99,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnEstadisticas1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnEstadisticas1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnRegistroVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegistrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegistrarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegistrarDron, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -113,10 +123,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnRegistroVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEstadisticas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEstadisticas1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(23, Short.MAX_VALUE))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
 
         pack();
@@ -151,7 +163,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         vIngresoEgreso.setVisible(true);
     }//GEN-LAST:event_btnCargaActionPerformed
 
+    private void btnRegistroVueloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistroVueloActionPerformed
+        // TODO add your handling code here:
+        VentanaRegistrarVuelo vRegVuelo = new VentanaRegistrarVuelo(this.getSistema());
+        vRegVuelo.setVisible(true);
+    }//GEN-LAST:event_btnRegistroVueloActionPerformed
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCarga;
     private javax.swing.JButton btnEstadisticas;
@@ -159,6 +177,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnRegistrarArticulo;
     private javax.swing.JButton btnRegistrarDron;
     private javax.swing.JButton btnRegistrarFuncionario;
+    private javax.swing.JButton btnRegistroVuelo;
     private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }
