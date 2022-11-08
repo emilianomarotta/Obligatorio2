@@ -74,6 +74,16 @@ public class Sistema {
         return nombreArticuloValido;
     }
 
+    public boolean agrearArticulo(String nombre, String descripcion) {
+        boolean ret = false;
+        if (this.nombreArticuloValido(nombre)) {
+            Articulo a = new Articulo(nombre, descripcion);
+            this.getListaArticulos().add(a);
+            ret = true;
+        }
+        return ret;
+    }
+
     public boolean numeroFuncionarioValido(int unNumero) {
         boolean numeroFuncionarioValido = true;
         Iterator<Funcionario> it = this.getListaFuncionarios().iterator();
@@ -85,12 +95,15 @@ public class Sistema {
         return numeroFuncionarioValido;
     }
 
-    public boolean edadFuncionarioValida(int edad) {
-        boolean edadFuncionarioValida = true;
-        if (edad > 100 || edad < 18) {
-            edadFuncionarioValida = false;
+    public boolean agregarFuncionario(String nombre, int edad, int numero) {
+        boolean ret = false;
+        if (numeroFuncionarioValido(numero)) {
+            Funcionario f = new Funcionario(nombre, edad, numero);
+            this.getListaFuncionarios().add(f);
+            ret = true;
         }
-        return edadFuncionarioValida;
+
+        return ret;
     }
 
     public boolean idDronValido(String id) {
@@ -104,6 +117,17 @@ public class Sistema {
         return idDronValido;
     }
 
+    public boolean agregarDron(String id, String modelo, int tipoCamara) {
+        boolean ret = false;
+        if (idDronValido(id)) {
+            Dron d = new Dron(id, modelo, tipoCamara);
+            this.getListaDrones().add(d);
+            ret = true;
+        }
+
+        return ret;
+    }
+
     public boolean codigoCargaValido(int unNumero) {
         boolean codigoCargaValido = true;
         Iterator<Carga> it = this.getListaCargas().iterator();
@@ -115,22 +139,28 @@ public class Sistema {
         return codigoCargaValido;
     }
 
+    public boolean ingresarCarga(int area, int fila, int col, Funcionario f, Articulo a, int cantidad, int codigo) {
+        boolean ret = false;
+        if (codigoCargaValido(codigo)) {
+            Area[] areas = this.getListaAreas();
+            Carga[][] tableroCargas = areas[area].getCargas();
+            tableroCargas[fila][col].setFuncionario(f);
+            tableroCargas[fila][col].setArticulo(a);
+            tableroCargas[fila][col].setCantArticulos(cantidad);
+            tableroCargas[fila][col].setCodigo(codigo);
+            this.getListaCargas().add(tableroCargas[fila][col]);
+            ret = true;
+        }
+
+        return ret;
+    }
+
     public void egresarCarga(Carga unaCarga) {
         this.getListaCargas().remove(unaCarga);
         unaCarga.setCodigo(-1);
         unaCarga.setFuncionario(null);
         unaCarga.setArticulo(null);
         unaCarga.setCantArticulos(0);
-    }
-
-    public void ingresarCarga(int area, int fila, int col, Funcionario f, Articulo a, int cantidad, int codigo) {
-        Area[] areas = this.getListaAreas();
-        Carga[][] tableroCargas = areas[area].getCargas();
-        tableroCargas[fila][col].setFuncionario(f);
-        tableroCargas[fila][col].setArticulo(a);
-        tableroCargas[fila][col].setCantArticulos(cantidad);
-        tableroCargas[fila][col].setCodigo(codigo);
-        this.getListaCargas().add(tableroCargas[fila][col]);
     }
 
     public Area[] crearAreas() {

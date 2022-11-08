@@ -13,7 +13,6 @@ import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 
 /**
@@ -103,6 +102,23 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
         jListFuncionarios.setListData(this.sistema.getListaFuncionarios().toArray());
     }
 
+    public void actualizarPaneles() {
+        actualizarListas();
+        if (sistema.getListaAreas()[areaActual].getCargas()[this.filaSeleccionda][this.columnaSeleccionada].getCodigo() == -1) {
+            panelIngreso.setVisible(true);
+            panelEgreso.setVisible(false);
+        } else {
+            panelEgreso.setVisible(true);
+            panelIngreso.setVisible(false);
+            Carga carga = sistema.getListaAreas()[areaActual].getCargas()[this.filaSeleccionda][this.columnaSeleccionada];
+            cargaSeleccionada = carga;
+            lblCodigo.setText(carga.getCodigo() + "");
+            lblArticulo.setText(carga.getArticulo().getNombre());
+            lblCantidadEgreso.setText(carga.getCantArticulos() + "");
+            lblFuncionario.setText(carga.getFuncionario().getNombre());
+        }
+    }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -139,6 +155,7 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
         btnEgresar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Ingreso/Egreso de Carga");
 
         panelEspacios.setBackground(new java.awt.Color(255, 255, 204));
         panelEspacios.setLayout(new java.awt.GridLayout(12, 10));
@@ -382,6 +399,9 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
         if (this.getAreaActual() < 4) {
             this.setAreaActual(this.getAreaActual() + 1);
             actualizarPantalla();
+        } else {
+            this.setAreaActual(0);
+            actualizarPantalla();
         }
 
 
@@ -390,6 +410,9 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
     private void btnAreaAnteriorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAreaAnteriorActionPerformed
         if (this.getAreaActual() > 0) {
             this.setAreaActual(this.getAreaActual() - 1);
+            actualizarPantalla();
+        } else {
+            this.setAreaActual(4);
             actualizarPantalla();
         }
     }//GEN-LAST:event_btnAreaAnteriorActionPerformed
@@ -401,17 +424,22 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEgresarActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        Funcionario f = (Funcionario) jListFuncionarios.getSelectedValue();
-        Articulo a = (Articulo) jListArticulos.getSelectedValue();
-        if (f != null) {
-            if (a != null) {
+
+        if (jListFuncionarios.getSelectedIndex() != -1) {
+            if (jListArticulos.getSelectedIndex() != -1) {
+                Funcionario f = (Funcionario) jListFuncionarios.getSelectedValue();
+                Articulo a = (Articulo) jListArticulos.getSelectedValue();
                 if (this.getUtil().esNumeroValido(txtCantidad.getText())) {
                     int cantidad = Integer.parseInt(txtCantidad.getText());
                     if (this.getUtil().esNumeroValido(txtCodigo.getText())) {
                         int codigo = Integer.parseInt(txtCodigo.getText());
-                        if (this.sistema.codigoCargaValido(codigo)) {
-                            this.sistema.ingresarCarga(this.getAreaActual(), this.getFilaSeleccionda(), this.getColumnaSeleccionada(), f, a, cantidad, codigo);
-                            System.out.println("listo pa agregar");
+                        if (this.sistema.ingresarCarga(this.getAreaActual(), this.getFilaSeleccionda(), this.getColumnaSeleccionada(), f, a, cantidad, codigo)) {
+                            // Actualizar la pantalla
+                            txtCantidad.setText("");
+                            txtCodigo.setText("");
+                            actualizarPaneles();
+                            JOptionPane.showMessageDialog(this, "Carga ingresada con éxito", "OK", JOptionPane.INFORMATION_MESSAGE);
+                            //
                         } else {
                             JOptionPane.showMessageDialog(this, "El código de carga ya está registrado", "Error", JOptionPane.ERROR_MESSAGE);
 
@@ -476,22 +504,9 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
             String textoBoton[] = cual.getText().split(":");
             int fila = Integer.parseInt(textoBoton[0]) - 1;
             int columna = Integer.parseInt(textoBoton[1]) - 1;
-            if (sistema.getListaAreas()[areaActual].getCargas()[fila][columna].getCodigo() == -1) {
-                panelIngreso.setVisible(true);
-                panelEgreso.setVisible(false);
-                actualizarListas();
-                filaSeleccionda = fila;
-                columnaSeleccionada = columna;
-            } else {
-                panelEgreso.setVisible(true);
-                panelIngreso.setVisible(false);
-                Carga carga = sistema.getListaAreas()[areaActual].getCargas()[fila][columna];
-                cargaSeleccionada = carga;
-                lblCodigo.setText(carga.getCodigo() + "");
-                lblArticulo.setText(carga.getArticulo().getNombre());
-                lblCantidadEgreso.setText(carga.getCantArticulos() + "");
-                lblFuncionario.setText(carga.getFuncionario().getNombre());
-            }
+            filaSeleccionda = fila;
+            columnaSeleccionada = columna;
+            actualizarPaneles();
         }
     }
 }

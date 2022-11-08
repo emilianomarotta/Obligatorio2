@@ -6,7 +6,6 @@ package interfazGrafica;
 
 import dominio.Funcionario;
 import dominio.Sistema;
-import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -153,44 +152,45 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
-        String nombreFuncionario = txtNombre.getText();
-        int edadFuncionario = 0;
-        //Se asume numero de funcionario valido mayor 0
-        int numeroFuncionario = -1;
 
-        if (this.getUtil().nombreValido(nombreFuncionario)) {
-            //Parseo la edad a entero para guardar el funcionario
-            try {
-                edadFuncionario = Integer.parseInt(txtEdad.getText());
-                if (!this.getUtil().edadFuncionarioValida(edadFuncionario)) {
-                    JOptionPane.showMessageDialog(this, "El funcionario debe ser mayor de edad", "Error", JOptionPane.ERROR_MESSAGE);
-                } else {
-                    try {
-                        numeroFuncionario = Integer.parseInt(txtNumero.getText());
-                        boolean numeroUnico = this.getSistema().numeroFuncionarioValido(numeroFuncionario);
-                        if (numeroUnico) {
-                            Funcionario f = new Funcionario(nombreFuncionario, edadFuncionario, numeroFuncionario);
-                            this.getSistema().getListaFuncionarios().add(f);
-                            String[] fDatos = {f.getNombre(), Integer.toString(f.getEdad()), Integer.toString(f.getNumero())};
+        if (this.getUtil().nombreValido(txtNombre.getText())) {
+            String nombreFuncionario = txtNombre.getText();
 
-                            DefaultTableModel modelo = (DefaultTableModel) tableListaFuncionarios.getModel();
-                            modelo.addRow(fDatos);
+            if (this.getUtil().esNumeroValido(txtEdad.getText())) {
+
+                int edadFuncionario = Integer.parseInt(txtEdad.getText());
+                if (this.getUtil().edadFuncionarioValida(edadFuncionario)) {
+                    if (this.getUtil().esNumeroValido(txtNumero.getText())) {
+                        int numeroFuncionario = Integer.parseInt(txtNumero.getText());
+                        if (this.sistema.agregarFuncionario(nombreFuncionario, edadFuncionario, numeroFuncionario)) {
+                            //Todo OK:
+                            txtNombre.setText("");
+                            txtEdad.setText("");
+                            txtNumero.setText("");
+                            actualizarVentana();
+                            JOptionPane.showMessageDialog(this, "Funcionario agregado con éxito", "OK", JOptionPane.INFORMATION_MESSAGE);
+
                         } else {
                             JOptionPane.showMessageDialog(this, "El funcionario ya está registrado en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+
                         }
-                    } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(this, "El número de funcionario debe ser un número", "Error", JOptionPane.ERROR_MESSAGE);
+                    } else {
+                        //Numero funcionario invalido
+                        JOptionPane.showMessageDialog(this, "El numero de funcionario debe ser un número", "Error", JOptionPane.ERROR_MESSAGE);
+
                     }
+
+                } else {
+                    //Edad invalida
+                    JOptionPane.showMessageDialog(this, "El funcionario debe ser mayor de edad", "Error", JOptionPane.ERROR_MESSAGE);
+
                 }
 
-            } catch (NumberFormatException e) {
+            } else {
+                //Numero edad invalido
                 JOptionPane.showMessageDialog(this, "La edad debe ser un número", "Error", JOptionPane.ERROR_MESSAGE);
-            }
 
-            //
-            //
-            //
+            }
         } else {
             JOptionPane.showMessageDialog(this, "El nombre del funcionario debe tener más de 3 caractéres", "Error", JOptionPane.ERROR_MESSAGE);
         }
@@ -210,13 +210,16 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void actualizarVentana() {
+        //Obtengo modelo de tabla para manipular datos
+        DefaultTableModel modelo = (DefaultTableModel) tableListaFuncionarios.getModel();
+        modelo.setRowCount(0);
+
         for (int i = 0; i < this.getSistema().getListaFuncionarios().size(); i++) {
             //Obtengo funcionarios registrados en sistema
             Funcionario f = this.getSistema().getListaFuncionarios().get(i);
-            String[] fDatos = {f.getNombre(), Integer.toString(f.getEdad()), Integer.toString(f.getNumero())};
 
             //Los agrego a la tabla
-            DefaultTableModel modelo = (DefaultTableModel) tableListaFuncionarios.getModel();
+            String[] fDatos = {f.getNombre(), Integer.toString(f.getEdad()), Integer.toString(f.getNumero())};
             modelo.addRow(fDatos);
 
         }

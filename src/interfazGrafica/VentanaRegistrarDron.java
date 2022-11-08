@@ -56,7 +56,7 @@ public class VentanaRegistrarDron extends javax.swing.JFrame {
         cBoxTipoCamara = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("Funcionarios");
+        setTitle("Drones");
 
         lblIdentificacion.setText("Identificación");
 
@@ -161,21 +161,20 @@ public class VentanaRegistrarDron extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
+
         String idDron = txtIdentificacion.getText();
         String modeloDron = txtModelo.getText();
         //Chequeo que todos los campos esten completos  
         if (!idDron.isEmpty() && !modeloDron.isEmpty() && !cBoxTipoCamara.getSelectedItem().equals("-")) {
-            //Chequeo que no este registrado
-            if (this.getSistema().idDronValido(idDron)) {
-                //Si todo esta ok, lo agrego a la lista y a la tabla de la interfaz
-                int tipoCamara = Integer.parseInt((String) cBoxTipoCamara.getSelectedItem());
-                Dron d = new Dron(idDron, modeloDron, tipoCamara);
-                String[] dDatos = {d.getId(), d.getModelo(), Integer.toString(d.getTipoCamara())};
-                this.getSistema().getListaDrones().add(d);
-                //Los agrego a la tabla
-                DefaultTableModel modelo = (DefaultTableModel) tableListaDrones.getModel();
-                modelo.addRow(dDatos);
+            int tipoCamara = Integer.parseInt((String) cBoxTipoCamara.getSelectedItem());
+            if (this.getSistema().agregarDron(idDron, modeloDron, tipoCamara)) {
+                //Todo ok
+                txtIdentificacion.setText("");
+                txtModelo.setText("");
+                cBoxTipoCamara.setSelectedIndex(0);
+                actualizarVentana();
+                JOptionPane.showMessageDialog(this, "Dron agregado con éxito", "OK", JOptionPane.INFORMATION_MESSAGE);
+
             } else {
                 JOptionPane.showMessageDialog(this, "El Dron ya se encuentra registrado en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
             }
@@ -198,13 +197,16 @@ public class VentanaRegistrarDron extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void actualizarVentana() {
+        //Obtengo modelo de tabla para manipular datos
+        DefaultTableModel modelo = (DefaultTableModel) tableListaDrones.getModel();
+        modelo.setRowCount(0);
+
         for (int i = 0; i < this.getSistema().getListaDrones().size(); i++) {
             //Obtengo drones registrados en sistema
             Dron d = this.getSistema().getListaDrones().get(i);
-            String[] dDatos = {d.getId(), d.getModelo(), Integer.toString(d.getTipoCamara())};
 
             //Los agrego a la tabla
-            DefaultTableModel modelo = (DefaultTableModel) tableListaDrones.getModel();
+            String[] dDatos = {d.getId(), d.getModelo(), Integer.toString(d.getTipoCamara())};
             modelo.addRow(dDatos);
 
         }

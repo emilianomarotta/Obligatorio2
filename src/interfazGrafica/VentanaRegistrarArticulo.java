@@ -6,7 +6,6 @@ package interfazGrafica;
 
 import dominio.Articulo;
 import dominio.Sistema;
-import java.util.Vector;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -140,19 +139,24 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
         String descripcionArticulo = txtDescripcion.getText();
         boolean nombreUnico = this.getSistema().nombreArticuloValido(nombreArticulo);
         if (nombreArticulo.length() > 0) {
-            if (nombreUnico) {
-                Articulo a = new Articulo(nombreArticulo, descripcionArticulo);
-                this.getSistema().getListaArticulos().add(a);
+            if (descripcionArticulo.length() > 0) {
+                if (this.sistema.agrearArticulo(nombreArticulo, descripcionArticulo)) {
+                    txtNombre.setText("");
+                    txtDescripcion.setText("");
+                    JOptionPane.showMessageDialog(this, "Artículo agregado con exito", "OK", JOptionPane.INFORMATION_MESSAGE);
+                    actualizarVentana();
 
-//                DefaultTableModel modelo = (DefaultTableModel) tableListaArticulos.getModel();
-//                String[] datos = {a.getNombre(), a.getDescripcion()};
-//                modelo.addRow(datos);
-                   actualizarVentana();
+                } else {
+                    JOptionPane.showMessageDialog(this, "El Artículo ya esta registrado en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             } else {
-                JOptionPane.showMessageDialog(this, "El Artículo ya esta registrado en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this, "No se admiten campos vacíos", "Error", JOptionPane.ERROR_MESSAGE);
+                
+
             }
+
         } else {
-            JOptionPane.showMessageDialog(this, "No se admite nombre de artículo vacío", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se admiten campos vacíos", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
     }//GEN-LAST:event_btnAgregarActionPerformed
@@ -169,30 +173,16 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public void actualizarVentana() {
-//        DefaultTableModel modelo = new DefaultTableModel();
-//        tableListaArticulos.setModel(modelo);
-
+        //Obtengo modelo de tabla para manipular datos
         DefaultTableModel modelo = (DefaultTableModel) tableListaArticulos.getModel();
-        
         modelo.setRowCount(0);
 
         for (int i = 0; i < this.getSistema().getListaArticulos().size(); i++) {
             //Obtengo articulos registrados en sistema
             Articulo a = this.getSistema().getListaArticulos().get(i);
+
             //Inserto en la tabla
-            //   DefaultTableModel modelo = (DefaultTableModel) tableListaArticulos.getModel();
-
-            /*
-            Vector<String> data = new Vector<>();
-            data.add(a.getNombre());
-            data.add(a.getDescripcion());
-            
-            if (!modelo.getDataVector().contains(data)) {
-                modelo.addRow(data);
-            }
-             */
             String[] datos = {a.getNombre(), a.getDescripcion()};
-
             modelo.addRow(datos);
 
         }

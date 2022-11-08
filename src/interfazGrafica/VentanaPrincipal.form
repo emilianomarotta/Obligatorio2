@@ -74,7 +74,7 @@
   <SubComponents>
     <Component class="javax.swing.JButton" name="btnRegistrarArticulo">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Registrar Articulo"/>
+        <Property name="text" type="java.lang.String" value="Registrar Art&#xed;culo"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarArticuloActionPerformed"/>
@@ -90,7 +90,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnEstadisticas">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Estadisticas"/>
+        <Property name="text" type="java.lang.String" value="Estad&#xed;sticas"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="btnRegistrarFuncionario">

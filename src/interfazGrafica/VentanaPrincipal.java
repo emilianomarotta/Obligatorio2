@@ -1,5 +1,4 @@
 package interfazGrafica;
-
 import dominio.Sistema;
 
 /**
@@ -43,7 +42,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setResizable(false);
         setSize(new java.awt.Dimension(351, 440));
 
-        btnRegistrarArticulo.setText("Registrar Articulo");
+        btnRegistrarArticulo.setText("Registrar Artículo");
         btnRegistrarArticulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnRegistrarArticuloActionPerformed(evt);
@@ -57,7 +56,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        btnEstadisticas.setText("Estadisticas");
+        btnEstadisticas.setText("Estadísticas");
 
         btnRegistrarFuncionario.setText("Registrar Funcionario");
         btnRegistrarFuncionario.addActionListener(new java.awt.event.ActionListener() {

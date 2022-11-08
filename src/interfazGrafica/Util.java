@@ -19,7 +19,7 @@ public class Util {
         }
         return retorno;
     }
-
+    
     public boolean edadFuncionarioValida(int edad) {
         boolean edadFuncionarioValida = true;
         if (edad > 100 || edad < 18) {
