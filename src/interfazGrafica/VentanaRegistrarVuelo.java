@@ -8,6 +8,7 @@ import dominio.Sistema;
 import java.io.File;
 import java.io.FileFilter;
 import java.util.Locale;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
@@ -48,6 +49,11 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jFileChooser.setDialogTitle("");
+        jFileChooser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jFileChooserActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout panelFileChooserLayout = new javax.swing.GroupLayout(panelFileChooser);
         panelFileChooser.setLayout(panelFileChooserLayout);
@@ -168,6 +174,26 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jFileChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooserActionPerformed
+        // TODO add your handling code here:
+        if (evt.getActionCommand().equals("ApproveSelection")) {
+            //
+            System.out.println("Implementar Open");
+            //
+            /* 
+                Capturar archivo
+                Leerlo
+                Compararlo con la fila ya ingresada
+                Mostrar resultados en la tabla
+             */
+        } else if (evt.getActionCommand().equals("CancelSelection")) {
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Se ejecuto una acción no controlada", "Error", JOptionPane.INFORMATION_MESSAGE);
+
+        }
+    }//GEN-LAST:event_jFileChooserActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

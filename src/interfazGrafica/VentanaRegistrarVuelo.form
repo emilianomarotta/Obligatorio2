@@ -71,6 +71,9 @@
           <Properties>
             <Property name="dialogTitle" type="java.lang.String" value=""/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFileChooserActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>
