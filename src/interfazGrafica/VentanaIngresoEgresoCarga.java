@@ -4,10 +4,7 @@
  */
 package interfazGrafica;
 
-import dominio.Articulo;
-import dominio.Carga;
-import dominio.Funcionario;
-import dominio.Sistema;
+import dominio.*;
 import java.awt.Color;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
@@ -438,11 +435,9 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
                             txtCantidad.setText("");
                             txtCodigo.setText("");
                             actualizarPaneles();
-                            JOptionPane.showMessageDialog(this, "Carga ingresada con éxito", "OK", JOptionPane.INFORMATION_MESSAGE);
-                            //
+                            JOptionPane.showMessageDialog(this, "Carga "+(this.getFilaSeleccionda()+1)+":"+(this.getColumnaSeleccionada()+1)+" ingresada con éxito", "OK", JOptionPane.INFORMATION_MESSAGE);
                         } else {
                             JOptionPane.showMessageDialog(this, "El código de carga ya está registrado", "Error", JOptionPane.ERROR_MESSAGE);
-
                         }
 
                     } else {
@@ -495,7 +490,6 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public class EspacioListener implements ActionListener {
-
         public void actionPerformed(ActionEvent e) {
             // este código se ejecutará al presionar el botón, obtengo cuál botón
             actualizarColorBotones();
