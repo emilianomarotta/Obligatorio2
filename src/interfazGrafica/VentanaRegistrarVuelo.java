@@ -5,16 +5,25 @@
 package interfazGrafica;
 
 import dominio.Sistema;
+import java.io.File;
+import java.io.FileFilter;
+import java.util.Locale;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
 public class VentanaRegistrarVuelo extends javax.swing.JFrame {
-private Sistema sistema;
+
+    private Sistema sistema;
+
     public VentanaRegistrarVuelo(Sistema s) {
         this.sistema = s;
         initComponents();
+        configurarFileChooser();
+        
+
     }
 
     /**
@@ -37,6 +46,8 @@ private Sistema sistema;
         lblDiferencias = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
+        jFileChooser.setDialogTitle("");
 
         javax.swing.GroupLayout panelFileChooserLayout = new javax.swing.GroupLayout(panelFileChooser);
         panelFileChooser.setLayout(panelFileChooserLayout);
@@ -158,7 +169,7 @@ private Sistema sistema;
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
- 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser jFileChooser;
     private javax.swing.JPanel jPanel1;
@@ -170,4 +181,12 @@ private Sistema sistema;
     private javax.swing.JLabel lblFila;
     private javax.swing.JPanel panelFileChooser;
     // End of variables declaration//GEN-END:variables
+
+    private void configurarFileChooser() {
+        jFileChooser.setCurrentDirectory(new java.io.File("."));
+        //Elimina All Files
+        jFileChooser.setAcceptAllFileFilterUsed(false);
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos.txt", "txt");
+        jFileChooser.setFileFilter(filter);
+    }
 }
