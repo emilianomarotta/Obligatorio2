@@ -1,10 +1,12 @@
 package dominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class Funcionario {
+public class Funcionario implements Serializable{
 
     private String nombre;
     private int edad;

@@ -1,5 +1,10 @@
 package dominio;
 
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 
@@ -7,7 +12,7 @@ import java.util.Iterator;
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class Sistema {
+public class Sistema implements Serializable{
 
     private ArrayList<Articulo> listaArticulos;
     private ArrayList<Funcionario> listaFuncionarios;
@@ -157,7 +162,7 @@ public class Sistema {
 
     public void egresarCarga(Carga unaCarga) {
         this.getListaCargas().remove(unaCarga);
-        unaCarga.setCodigo(-1);
+        unaCarga.setCodigo(0);
         unaCarga.setFuncionario(null);
         unaCarga.setArticulo(null);
         unaCarga.setCantArticulos(0);
@@ -175,5 +180,27 @@ public class Sistema {
 
         return ret;
     }
+    
+        public void guardarSistema(Sistema s) {
+        try {
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("datos.ser"));
+            out.writeObject(s);
+            out.close();
+        } catch (Exception e) {
+            System.out.println("Error");
+        }
+    }
 
+    public Sistema cargarSistema() {
+        Sistema s = null;
+        try {
+            ObjectInputStream in = new ObjectInputStream(new FileInputStream("datos.dat"));
+            s = (Sistema) in.readObject();
+            in.close();
+        } catch (Exception e) {
+            s = new Sistema();
+        }
+        return s;
+    }
 }
+

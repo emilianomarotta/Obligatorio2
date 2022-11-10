@@ -1,10 +1,12 @@
 package dominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class Carga {
+public class Carga implements Serializable{
 
     private int codigo;
     private Funcionario funcionario;

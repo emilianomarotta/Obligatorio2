@@ -190,6 +190,10 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
 
         lblCodigoIngreso.setText("Código");
 
+        txtCantidad.setNextFocusableComponent(txtCodigo);
+
+        txtCodigo.setNextFocusableComponent(btnIngresar);
+
         btnIngresar.setText("Ingresar");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

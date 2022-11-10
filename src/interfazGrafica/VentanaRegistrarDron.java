@@ -62,7 +62,12 @@ public class VentanaRegistrarDron extends javax.swing.JFrame {
 
         lblModelo.setText("Modelo");
 
+        txtIdentificacion.setNextFocusableComponent(txtModelo);
+
+        txtModelo.setNextFocusableComponent(cBoxTipoCamara);
+
         btnAgregar.setText("Agregar");
+        btnAgregar.setNextFocusableComponent(txtIdentificacion);
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnAgregarActionPerformed(evt);
@@ -104,6 +109,7 @@ public class VentanaRegistrarDron extends javax.swing.JFrame {
         lblTipoDeCamara.setText("Tipo de Camara");
 
         cBoxTipoCamara.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "1", "2", "3", "4", "5", "6" }));
+        cBoxTipoCamara.setNextFocusableComponent(btnAgregar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -210,6 +216,8 @@ public class VentanaRegistrarDron extends javax.swing.JFrame {
             modelo.addRow(dDatos);
 
         }
+
+        
 
     }
 }

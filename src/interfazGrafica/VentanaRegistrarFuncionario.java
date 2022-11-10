@@ -62,6 +62,10 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
 
         lblEdad.setText("Edad");
 
+        txtNombre.setNextFocusableComponent(txtEdad);
+
+        txtEdad.setNextFocusableComponent(txtNumero);
+
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -102,6 +106,8 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
         }
 
         lblNumero.setText("Numero");
+
+        txtNumero.setNextFocusableComponent(btnAgregar);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -180,10 +186,9 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
 
                     }
 
-                } else {
-                    //Edad invalida
-                    JOptionPane.showMessageDialog(this, "El funcionario debe ser mayor de edad", "Error", JOptionPane.ERROR_MESSAGE);
-
+                } else {                    
+                    JOptionPane.showMessageDialog(this, "Ingrese una edad válida mayor a 18 y menor a 65", "Error", JOptionPane.ERROR_MESSAGE);
+                    
                 }
 
             } else {

@@ -40,9 +40,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setTitle("Control de Inventario");
         setMaximumSize(new java.awt.Dimension(351, 530));
         setMinimumSize(new java.awt.Dimension(351, 530));
-        setPreferredSize(new java.awt.Dimension(351, 530));
         setResizable(false);
         setSize(new java.awt.Dimension(351, 530));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         btnRegistrarArticulo.setText("Registrar Artículo");
         btnRegistrarArticulo.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +159,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
     private void btnEstadisticas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadisticas1ActionPerformed
         // TODO add your handling code here:
-        dispose();
+        this.getSistema().guardarSistema(this.getSistema());
+    //    this.dispose();
+    
+       System.exit(0);
     }//GEN-LAST:event_btnEstadisticas1ActionPerformed
 
     private void btnCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaActionPerformed
@@ -168,6 +175,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         VentanaRegistrarVuelo vRegVuelo = new VentanaRegistrarVuelo(this.getSistema());
         vRegVuelo.setVisible(true);
     }//GEN-LAST:event_btnRegistroVueloActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        this.getSistema().guardarSistema(this.getSistema());
+    }//GEN-LAST:event_formWindowClosing
 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables

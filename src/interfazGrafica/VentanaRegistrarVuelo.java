@@ -12,10 +12,15 @@ import java.io.File;
 import java.io.FileFilter;
 import java.util.ArrayList;
 import java.util.Locale;
+import javax.accessibility.AccessibleContext;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.UIManager;
+import javax.swing.border.Border;
+import javax.swing.border.CompoundBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.plaf.TableUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,9 +29,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
 public class VentanaRegistrarVuelo extends javax.swing.JFrame {
-    
+
     private Sistema sistema;
-    
+
     public VentanaRegistrarVuelo(Sistema s) {
         this.sistema = s;
         UIManager.put("FileChooser.openButtonText", "Abrir");
@@ -35,8 +40,9 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
         UIManager.put("FileChooser.fileNameLabelText", "Archivo");
         UIManager.put("FileChooser.lookInLabelText", "Mirar en");
         initComponents();
+        tableVuelo.getTableHeader().setReorderingAllowed(false);
         configurarFileChooser();
-        
+
     }
 
     /**
@@ -54,7 +60,7 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
         lblArea = new javax.swing.JLabel();
         lblFila = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTableVuelo = new javax.swing.JTable();
+        tableVuelo = new javax.swing.JTable();
         lblCoincidencias = new javax.swing.JLabel();
         lblDiferencias = new javax.swing.JLabel();
 
@@ -86,7 +92,7 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
 
         lblFila.setText("Fila: ");
 
-        jTableVuelo.setModel(new javax.swing.table.DefaultTableModel(
+        tableVuelo.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null, null, null, null, null},
                 {null, null, null, null, null, null, null, null, null, null, null}
@@ -110,19 +116,19 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTableVuelo);
-        if (jTableVuelo.getColumnModel().getColumnCount() > 0) {
-            jTableVuelo.getColumnModel().getColumn(0).setResizable(false);
-            jTableVuelo.getColumnModel().getColumn(1).setResizable(false);
-            jTableVuelo.getColumnModel().getColumn(2).setResizable(false);
-            jTableVuelo.getColumnModel().getColumn(3).setResizable(false);
-            jTableVuelo.getColumnModel().getColumn(4).setResizable(false);
-            jTableVuelo.getColumnModel().getColumn(5).setResizable(false);
-            jTableVuelo.getColumnModel().getColumn(6).setResizable(false);
-            jTableVuelo.getColumnModel().getColumn(7).setResizable(false);
-            jTableVuelo.getColumnModel().getColumn(8).setResizable(false);
-            jTableVuelo.getColumnModel().getColumn(9).setResizable(false);
-            jTableVuelo.getColumnModel().getColumn(10).setResizable(false);
+        jScrollPane1.setViewportView(tableVuelo);
+        if (tableVuelo.getColumnModel().getColumnCount() > 0) {
+            tableVuelo.getColumnModel().getColumn(0).setResizable(false);
+            tableVuelo.getColumnModel().getColumn(1).setResizable(false);
+            tableVuelo.getColumnModel().getColumn(2).setResizable(false);
+            tableVuelo.getColumnModel().getColumn(3).setResizable(false);
+            tableVuelo.getColumnModel().getColumn(4).setResizable(false);
+            tableVuelo.getColumnModel().getColumn(5).setResizable(false);
+            tableVuelo.getColumnModel().getColumn(6).setResizable(false);
+            tableVuelo.getColumnModel().getColumn(7).setResizable(false);
+            tableVuelo.getColumnModel().getColumn(8).setResizable(false);
+            tableVuelo.getColumnModel().getColumn(9).setResizable(false);
+            tableVuelo.getColumnModel().getColumn(10).setResizable(false);
         }
 
         lblCoincidencias.setText("Total coincidencias: ");
@@ -134,18 +140,17 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
+                .addComponent(lblArea)
+                .addGap(64, 64, 64)
+                .addComponent(lblFila)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(lblArea)
-                        .addGap(64, 64, 64)
-                        .addComponent(lblFila))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 738, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblDiferencias)
                     .addComponent(lblCoincidencias, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -155,12 +160,12 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
                     .addComponent(lblArea)
                     .addComponent(lblFila))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(lblCoincidencias)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblDiferencias)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -190,7 +195,7 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
     private void jFileChooserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFileChooserActionPerformed
         // TODO add your handling code here:
         if (evt.getActionCommand().equals("ApproveSelection")) {
-            
+
             ArchivoLectura archivo = new ArchivoLectura(jFileChooser.getSelectedFile().getAbsolutePath());
             ArrayList<String> lineasArchivo = new ArrayList<>();
             //Guardamos las lineas en una lista para ver si es un vuelo valido
@@ -212,9 +217,8 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
                 //Anadir vuelo al dron
                 Carga[] filaCargaManual = this.sistema.getListaAreas()[numeroArea].getCargas()[fila];
                 //
-                DefaultTableModel modelo = (DefaultTableModel) jTableVuelo.getModel();
+                DefaultTableModel modelo = (DefaultTableModel) tableVuelo.getModel();
                 modelo.setRowCount(0);
-                centrarTextoTabla();
                 String[] codCargasManuales = new String[11];
                 String[] codCargasArchivo = new String[11];
                 codCargasArchivo[0] = "Archivo";
@@ -235,9 +239,7 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
                 colorearTabla(modelo);
                 lblCoincidencias.setText(lblCoincidencias.getText() + coincidencias);
                 lblDiferencias.setText(lblDiferencias.getText() + diferencias);
-                
             }
-
             /* 
                 Capturar archivo
                 Leerlo
@@ -248,40 +250,66 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Se ejecuto una acción no controlada", "Error", JOptionPane.INFORMATION_MESSAGE);
-            
+
         }
-        
+
 
     }//GEN-LAST:event_jFileChooserActionPerformed
-    
-    public void centrarTextoTabla() {
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-        jTableVuelo.setDefaultRenderer(String.class, centerRenderer);
-    }
-    
+
     public void colorearTabla(DefaultTableModel modelo) {
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        
-        for (int i = 1; i < 11; i++) {
-            Component c = jTableVuelo.getComponentAt(0, i);
-            if (modelo.getValueAt(0, i).equals(modelo.getValueAt(1, i))) {
-                c.setBackground(Color.red);
-                jTableVuelo.getComponentAt(1, i).setBackground(Color.GREEN);
-            }
-            
+        for (int i = 0; i < 11; i++) {
+            changeTable(tableVuelo, i, modelo.getValueAt(0, i), modelo.getValueAt(1, i));
+
         }
+        tableVuelo.setRowHeight(tableVuelo.getRowHeight() + 6);
+        tableVuelo.setRowSelectionAllowed(false);
+        tableVuelo.getTableHeader().setReorderingAllowed(false);
+
+    }
+
+    public void changeTable(JTable table, int column_index, Object valorManual, Object valorArchivo) {
+        table.getColumnModel().getColumn(column_index).setCellRenderer(new DefaultTableCellRenderer() {
+            @Override
+            public void setHorizontalAlignment(int alignment) {
+                super.setHorizontalAlignment(JLabel.CENTER);
+            }
+
+            @Override
+            public void setBorder(Border border) {
+                super.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createEtchedBorder(javax.swing.border.EtchedBorder.RAISED), javax.swing.BorderFactory.createEtchedBorder()));
+            }
+
+            public void setAccessibleContext(AccessibleContext accessibleContext) {
+                this.accessibleContext = accessibleContext;
+            }
+
+            @Override
+            public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+                final Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+                if (column > 0) {
+                    if (valorManual.equals(valorArchivo)) {
+                        c.setBackground(Color.GREEN);
+                    } else {
+                        c.setBackground(Color.RED);
+                    }
+                } else {
+                    c.setBackground(Color.LIGHT_GRAY);
+                }
+
+                return c;
+            }
+        });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JFileChooser jFileChooser;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTableVuelo;
     private javax.swing.JLabel lblArea;
     private javax.swing.JLabel lblCoincidencias;
     private javax.swing.JLabel lblDiferencias;
     private javax.swing.JLabel lblFila;
     private javax.swing.JPanel panelFileChooser;
+    private javax.swing.JTable tableVuelo;
     // End of variables declaration//GEN-END:variables
 
     private void configurarFileChooser() {

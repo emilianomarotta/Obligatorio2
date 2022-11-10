@@ -54,6 +54,10 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
 
         lblDescripcion.setText("Descripción");
 
+        txtNombre.setNextFocusableComponent(txtDescripcion);
+
+        txtDescripcion.setNextFocusableComponent(btnAgregar);
+
         btnAgregar.setText("Agregar");
         btnAgregar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

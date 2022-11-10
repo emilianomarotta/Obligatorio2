@@ -1,12 +1,13 @@
 package dominio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class Dron {
+public class Dron implements Serializable{
 
     private String id;
     private String modelo;

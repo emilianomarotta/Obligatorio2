@@ -22,7 +22,7 @@ public class Util {
     
     public boolean edadFuncionarioValida(int edad) {
         boolean edadFuncionarioValida = true;
-        if (edad > 100 || edad < 18) {
+        if (edad > 65 || edad < 18) {
             edadFuncionarioValida = false;
         }
         return edadFuncionarioValida;

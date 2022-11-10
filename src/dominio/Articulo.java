@@ -1,10 +1,12 @@
 package dominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class Articulo {
+public class Articulo implements Serializable{
 
     private String nombre;
     private String descripcion;

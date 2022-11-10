@@ -1,10 +1,12 @@
 package dominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class Area {
+public class Area implements Serializable{
 
     private Carga[][] cargas;
     private String area;
