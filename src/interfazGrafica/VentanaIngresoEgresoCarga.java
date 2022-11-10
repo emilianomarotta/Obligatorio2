@@ -101,7 +101,7 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
 
     public void actualizarPaneles() {
         actualizarListas();
-        if (sistema.getListaAreas()[areaActual].getCargas()[this.filaSeleccionda][this.columnaSeleccionada].getCodigo() == -1) {
+        if (sistema.getListaAreas()[areaActual].getCargas()[this.filaSeleccionda][this.columnaSeleccionada].getCodigo() == 0) {
             panelIngreso.setVisible(true);
             panelEgreso.setVisible(false);
         } else {

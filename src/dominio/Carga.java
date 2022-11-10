@@ -12,8 +12,8 @@ public class Carga {
     private int cantArticulos;
 
     public Carga() {
-       // Se asume el codigo -1 para cargas vacias
-        this(-1, null, null, 0);
+       // Se asume el codigo 0 para cargas vacias
+        this(0, null, null, 0);
     }
 
     public Carga(int codigo, Funcionario funcionario, Articulo articulo, int cantArticulos) {
