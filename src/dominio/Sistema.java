@@ -12,7 +12,7 @@ import java.util.Iterator;
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class Sistema implements Serializable{
+public class Sistema implements Serializable {
 
     private ArrayList<Articulo> listaArticulos;
     private ArrayList<Funcionario> listaFuncionarios;
@@ -129,7 +129,29 @@ public class Sistema implements Serializable{
             this.getListaDrones().add(d);
             ret = true;
         }
+        return ret;
+    }
 
+    public Dron buscarDron(String id) {
+        Dron d = null;
+        ArrayList<Dron> listaD = this.getListaDrones();
+        for (int i = 0; i < listaD.size() && d == null; i++) {
+            Dron unDron = listaD.get(i);
+            if (unDron.getId().equals(id)) {
+                d = unDron;
+            }
+        }
+        return d;
+    }
+
+    public boolean agregarVuelo(boolean exitoso, String area, String idDron, int fila, int coincidencias, int diferencias, int cantCargas, String nombreArchivo) {
+        boolean ret = false;
+        Dron d = buscarDron(idDron);
+        if (d != null) {
+            Vuelo v = new Vuelo(exitoso, area, d, fila, coincidencias, diferencias, cantCargas, nombreArchivo);
+            d.getListaVuelos().add(v);
+            ret = true;
+        }
         return ret;
     }
 
@@ -180,10 +202,10 @@ public class Sistema implements Serializable{
 
         return ret;
     }
-    
-        public void guardarSistema(Sistema s) {
+
+    public void guardarSistema(Sistema s) {
         try {
-            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("datos.ser"));
+            ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("datos.dat"));
             out.writeObject(s);
             out.close();
         } catch (Exception e) {
@@ -203,4 +225,3 @@ public class Sistema implements Serializable{
         return s;
     }
 }
-

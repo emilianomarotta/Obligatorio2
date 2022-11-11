@@ -33,7 +33,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         btnRegistrarFuncionario = new javax.swing.JButton();
         btnRegistrarDron = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
-        btnEstadisticas1 = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
         btnCarga = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,6 +63,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         });
 
         btnEstadisticas.setText("Estadísticas");
+        btnEstadisticas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEstadisticasActionPerformed(evt);
+            }
+        });
 
         btnRegistrarFuncionario.setText("Registrar Funcionario");
         btnRegistrarFuncionario.addActionListener(new java.awt.event.ActionListener() {
@@ -82,10 +87,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         lblTitulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         lblTitulo.setText("Control de Inventario");
 
-        btnEstadisticas1.setText("Salir");
-        btnEstadisticas1.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEstadisticas1ActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
 
@@ -104,7 +109,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addGap(60, 60, 60)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnCarga, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnEstadisticas1, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegistroVuelo, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegistrarFuncionario, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnRegistrarArticulo, javax.swing.GroupLayout.PREFERRED_SIZE, 233, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -131,7 +136,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnEstadisticas, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEstadisticas1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(61, Short.MAX_VALUE))
         );
 
@@ -157,13 +162,13 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         vRegistrarDron.setVisible(true);
     }//GEN-LAST:event_btnRegistrarDronActionPerformed
 
-    private void btnEstadisticas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadisticas1ActionPerformed
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         // TODO add your handling code here:
         this.getSistema().guardarSistema(this.getSistema());
-    //    this.dispose();
+        this.dispose();
     
-       System.exit(0);
-    }//GEN-LAST:event_btnEstadisticas1ActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnCargaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaActionPerformed
         VentanaIngresoEgresoCarga vIngresoEgreso = new VentanaIngresoEgresoCarga(this.getSistema());
@@ -180,15 +185,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         this.getSistema().guardarSistema(this.getSistema());
     }//GEN-LAST:event_formWindowClosing
 
+    private void btnEstadisticasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEstadisticasActionPerformed
+        VentanaEstadisticas vEstadisticas = new VentanaEstadisticas(this.getSistema());
+        vEstadisticas.setVisible(true);
+    }//GEN-LAST:event_btnEstadisticasActionPerformed
+
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCarga;
     private javax.swing.JButton btnEstadisticas;
-    private javax.swing.JButton btnEstadisticas1;
     private javax.swing.JButton btnRegistrarArticulo;
     private javax.swing.JButton btnRegistrarDron;
     private javax.swing.JButton btnRegistrarFuncionario;
     private javax.swing.JButton btnRegistroVuelo;
+    private javax.swing.JButton btnSalir;
     private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,7 +7,7 @@ import java.util.ArrayList;
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class Dron implements Serializable{
+public class Dron implements Serializable {
 
     private String id;
     private String modelo;
@@ -52,7 +52,10 @@ public class Dron implements Serializable{
     public void setListaVuelos(ArrayList<Vuelo> listaVuelos) {
         this.listaVuelos = listaVuelos;
     }
-    
-    
+
+    @Override
+    public String toString() {
+        return "Id: "+ this.getId()+", Modelo: "+this.getModelo();
+    }
 
 }

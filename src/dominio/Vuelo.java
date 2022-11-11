@@ -92,4 +92,17 @@ public class Vuelo implements Serializable{
         this.nombreArchivo = nombreArchivo;
     }
 
+    @Override
+    public String toString() {
+        String ret = "Archivo: "+this.getNombreArchivo()+", Area: "+this.getArea()+", Fila: "+this.getFila();        
+        if(this.isExitoso()){
+            ret = ret + ", Coincidencias: "+this.getCoincidencias()+", Diferencias: "+this.getDiferencias();
+        } else{
+            ret = ret + ", Nro líneas: "+ this.getCantCargas();
+        }
+        return ret ;
+    }
+    
+    
+
 }
