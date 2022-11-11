@@ -65,6 +65,7 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
         lblDiferencias = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Registro de Vuelo");
 
         jFileChooser.setDialogTitle("");
         jFileChooser.addActionListener(new java.awt.event.ActionListener() {
@@ -203,7 +204,7 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
                 lineasArchivo.add(archivo.linea());
             }
             if (lineasArchivo.size() != 12) {
-                JOptionPane.showMessageDialog(this, "Vuelo no exitoso", "Información", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Vuelo no exitoso. El archivo contiene "+ (lineasArchivo.size()-2)+ " líneas de cargas", "Información de vuelo", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 String codigoDron = lineasArchivo.get(0);
                 //obtener dron
