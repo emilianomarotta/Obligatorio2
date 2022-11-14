@@ -2,12 +2,13 @@ package dominio;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Observable;
 
 /**
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class Dron implements Serializable {
+public class Dron extends Observable implements Serializable {
 
     private String id;
     private String modelo;
@@ -27,6 +28,8 @@ public class Dron implements Serializable {
 
     public void setId(String id) {
         this.id = id;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public String getModelo() {
@@ -34,7 +37,9 @@ public class Dron implements Serializable {
     }
 
     public void setModelo(String modelo) {
-        this.modelo = modelo;
+        this.modelo = modelo;        
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public int getTipoCamara() {
@@ -43,6 +48,8 @@ public class Dron implements Serializable {
 
     public void setTipoCamara(int tipoCamara) {
         this.tipoCamara = tipoCamara;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public ArrayList<Vuelo> getListaVuelos() {
@@ -51,11 +58,13 @@ public class Dron implements Serializable {
 
     public void setListaVuelos(ArrayList<Vuelo> listaVuelos) {
         this.listaVuelos = listaVuelos;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     @Override
     public String toString() {
-        return "Id: "+ this.getId()+", Modelo: "+this.getModelo();
+        return "Id: " + this.getId() + ", Modelo: " + this.getModelo();
     }
 
 }

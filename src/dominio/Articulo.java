@@ -1,12 +1,13 @@
 package dominio;
 
 import java.io.Serializable;
+import java.util.Observable;
 
 /**
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class Articulo implements Serializable{
+public class Articulo extends Observable implements Serializable{
 
     private String nombre;
     private String descripcion;
@@ -22,6 +23,8 @@ public class Articulo implements Serializable{
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public String getDescripcion() {
@@ -30,6 +33,8 @@ public class Articulo implements Serializable{
 
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     @Override

@@ -8,19 +8,16 @@ import archivos.ArchivoLectura;
 import dominio.*;
 import java.awt.Color;
 import java.awt.Component;
-import java.io.File;
-import java.io.FileFilter;
 import java.util.ArrayList;
-import java.util.Locale;
+import java.util.Observable;
+import java.util.Observer;
 import javax.accessibility.AccessibleContext;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.UIManager;
 import javax.swing.border.Border;
-import javax.swing.border.CompoundBorder;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.plaf.TableUI;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -28,12 +25,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class VentanaRegistrarVuelo extends javax.swing.JFrame {
+public class VentanaRegistrarVuelo extends javax.swing.JFrame implements Observer {
 
     private Sistema sistema;
 
     public VentanaRegistrarVuelo(Sistema s) {
         this.sistema = s;
+        this.sistema.addObserver(this);
+        //Traductir jFileChooser
         UIManager.put("FileChooser.openButtonText", "Abrir");
         UIManager.put("FileChooser.cancelButtonText", "Cancelar");
         UIManager.put("FileChooser.filesOfTypeLabelText", "Tipo");
@@ -243,7 +242,7 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
                     codCargasManuales[i - 1] = "" + codigoCargaManual;
                     codCargasArchivo[i - 1] = "" + codigoCargaArchivo;
                 }
-                if (this.sistema.agregarVuelo(exitoso, letraArea, codigoDron, fila, coincidencias, diferencias, cantCargas, nombreArchivo)) {
+                if (this.sistema.agregarVuelo(exitoso, letraArea, codigoDron, (fila+1), coincidencias, diferencias, cantCargas, nombreArchivo)) {
                     JOptionPane.showMessageDialog(this, "Vuelo registrado con exito", "OK", JOptionPane.INFORMATION_MESSAGE);
                     modelo.addRow(codCargasArchivo);
                     modelo.addRow(codCargasManuales);
@@ -321,4 +320,10 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos.txt", "txt");
         jFileChooser.setFileFilter(filter);
     }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        //colorearTabla((DefaultTableModel) arg);
+    }
+
 }

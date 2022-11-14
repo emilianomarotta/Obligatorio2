@@ -1,12 +1,13 @@
 package dominio;
 
 import java.io.Serializable;
+import java.util.Observable;
 
 /**
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class Area implements Serializable{
+public class Area extends Observable implements Serializable {
 
     private Carga[][] cargas;
     private String area;
@@ -22,6 +23,8 @@ public class Area implements Serializable{
 
     public void setCargas(Carga[][] cargas) {
         this.cargas = cargas;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public String getArea() {
@@ -30,6 +33,8 @@ public class Area implements Serializable{
 
     public void setArea(String area) {
         this.area = area;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public Carga[][] crearCargas() {

@@ -6,6 +6,8 @@ package interfazGrafica;
 
 import dominio.Articulo;
 import dominio.Sistema;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,15 +15,13 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class VentanaRegistrarArticulo extends javax.swing.JFrame {
+public class VentanaRegistrarArticulo extends javax.swing.JFrame implements Observer {
 
     private Sistema sistema;
 
-    /**
-     * Creates new form VentanaRegistrarArticulo
-     */
     public VentanaRegistrarArticulo(Sistema s) {
         this.sistema = s;
+        this.sistema.addObserver(this);
         initComponents();
         actualizarVentana();
     }
@@ -155,7 +155,6 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "No se admiten campos vacíos", "Error", JOptionPane.ERROR_MESSAGE);
-                
 
             }
 
@@ -190,5 +189,10 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame {
             modelo.addRow(datos);
 
         }
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        actualizarVentana();
     }
 }

@@ -1,12 +1,13 @@
 package dominio;
 
 import java.io.Serializable;
+import java.util.Observable;
 
 /**
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class Carga implements Serializable{
+public class Carga extends Observable implements Serializable{
 
     private int codigo;
     private Funcionario funcionario;
@@ -31,6 +32,8 @@ public class Carga implements Serializable{
 
     public void setCodigo(int codigo) {
         this.codigo = codigo;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public Funcionario getFuncionario() {
@@ -39,6 +42,8 @@ public class Carga implements Serializable{
 
     public void setFuncionario(Funcionario funcionario) {
         this.funcionario = funcionario;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public Articulo getArticulo() {
@@ -47,6 +52,8 @@ public class Carga implements Serializable{
 
     public void setArticulo(Articulo articulo) {
         this.articulo = articulo;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public int getCantArticulos() {
@@ -55,6 +62,8 @@ public class Carga implements Serializable{
 
     public void setCantArticulos(int cantArticulos) {
         this.cantArticulos = cantArticulos;
+        this.setChanged();
+        this.notifyObservers();
     }
 
 }

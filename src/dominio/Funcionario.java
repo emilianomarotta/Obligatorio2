@@ -1,12 +1,13 @@
 package dominio;
 
 import java.io.Serializable;
+import java.util.Observable;
 
 /**
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class Funcionario implements Serializable{
+public class Funcionario extends Observable implements Serializable{
 
     private String nombre;
     private int edad;
@@ -24,6 +25,8 @@ public class Funcionario implements Serializable{
 
     public void setNombre(String nombre) {
         this.nombre = nombre;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public int getEdad() {
@@ -32,6 +35,8 @@ public class Funcionario implements Serializable{
 
     public void setEdad(int edad) {
         this.edad = edad;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public int getNumero() {
@@ -40,6 +45,8 @@ public class Funcionario implements Serializable{
 
     public void setNumero(int numero) {
         this.numero = numero;
+        this.setChanged();
+        this.notifyObservers();
     }
     
     @Override

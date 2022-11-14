@@ -6,6 +6,8 @@ package interfazGrafica;
 
 import dominio.Funcionario;
 import dominio.Sistema;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -13,20 +15,14 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
+public class VentanaRegistrarFuncionario extends javax.swing.JFrame implements Observer {
 
     private Sistema sistema;
     private Util util;
 
-    public Util getUtil() {
-        return util;
-    }
-
-    /**
-     * Creates new form VentanaRegistrarArticulo
-     */
     public VentanaRegistrarFuncionario(Sistema s) {
         this.sistema = s;
+        this.sistema.addObserver(this);
         this.util = new Util();
         initComponents();
         actualizarVentana();
@@ -34,6 +30,10 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
 
     public Sistema getSistema() {
         return sistema;
+    }
+
+    public Util getUtil() {
+        return util;
     }
 
     /**
@@ -158,12 +158,9 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-
         if (this.getUtil().nombreValido(txtNombre.getText())) {
             String nombreFuncionario = txtNombre.getText();
-
             if (this.getUtil().esNumeroValido(txtEdad.getText())) {
-
                 int edadFuncionario = Integer.parseInt(txtEdad.getText());
                 if (this.getUtil().edadFuncionarioValida(edadFuncionario)) {
                     if (this.getUtil().esNumeroValido(txtNumero.getText())) {
@@ -175,26 +172,19 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
                             txtNumero.setText("");
                             actualizarVentana();
                             JOptionPane.showMessageDialog(this, "Funcionario agregado con éxito", "OK", JOptionPane.INFORMATION_MESSAGE);
-
                         } else {
                             JOptionPane.showMessageDialog(this, "El funcionario ya está registrado en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
-
                         }
                     } else {
                         //Numero funcionario invalido
                         JOptionPane.showMessageDialog(this, "El numero de funcionario debe ser un número", "Error", JOptionPane.ERROR_MESSAGE);
-
                     }
-
-                } else {                    
+                } else {
                     JOptionPane.showMessageDialog(this, "Ingrese una edad válida mayor a 18 y menor a 65", "Error", JOptionPane.ERROR_MESSAGE);
-                    
                 }
-
             } else {
                 //Numero edad invalido
                 JOptionPane.showMessageDialog(this, "La edad debe ser un número", "Error", JOptionPane.ERROR_MESSAGE);
-
             }
         } else {
             JOptionPane.showMessageDialog(this, "El nombre del funcionario debe tener más de 3 caractéres", "Error", JOptionPane.ERROR_MESSAGE);
@@ -218,16 +208,19 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame {
         //Obtengo modelo de tabla para manipular datos
         DefaultTableModel modelo = (DefaultTableModel) tableListaFuncionarios.getModel();
         modelo.setRowCount(0);
-
         for (int i = 0; i < this.getSistema().getListaFuncionarios().size(); i++) {
             //Obtengo funcionarios registrados en sistema
             Funcionario f = this.getSistema().getListaFuncionarios().get(i);
-
             //Los agrego a la tabla
             String[] fDatos = {f.getNombre(), Integer.toString(f.getEdad()), Integer.toString(f.getNumero())};
             modelo.addRow(fDatos);
 
         }
 
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        actualizarVentana();
     }
 }

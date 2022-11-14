@@ -1,16 +1,20 @@
 package interfazGrafica;
+
 import dominio.Sistema;
+import java.util.Observable;
+import java.util.Observer;
 
 /**
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class VentanaPrincipal extends javax.swing.JFrame {
+public class VentanaPrincipal extends javax.swing.JFrame implements Observer {
 
     private Sistema sistema;
 
     public VentanaPrincipal(Sistema s) {
         this.sistema = s;
+         this.sistema.addObserver(this);
         initComponents();
     }
 
@@ -166,7 +170,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.getSistema().guardarSistema(this.getSistema());
         this.dispose();
-    
+
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
@@ -190,7 +194,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         vEstadisticas.setVisible(true);
     }//GEN-LAST:event_btnEstadisticasActionPerformed
 
-    
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCarga;
     private javax.swing.JButton btnEstadisticas;
@@ -201,4 +205,9 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel lblTitulo;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Observable o, Object arg) {
+
+    }
 }

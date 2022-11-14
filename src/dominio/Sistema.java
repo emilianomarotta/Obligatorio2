@@ -7,12 +7,13 @@ import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Observable;
 
 /**
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class Sistema implements Serializable {
+public class Sistema extends Observable implements Serializable {
 
     private ArrayList<Articulo> listaArticulos;
     private ArrayList<Funcionario> listaFuncionarios;
@@ -34,6 +35,8 @@ public class Sistema implements Serializable {
 
     public void setListaArticulos(ArrayList<Articulo> listaArticulos) {
         this.listaArticulos = listaArticulos;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public ArrayList<Funcionario> getListaFuncionarios() {
@@ -42,6 +45,8 @@ public class Sistema implements Serializable {
 
     public void setListaFuncionarios(ArrayList<Funcionario> listaFuncionarios) {
         this.listaFuncionarios = listaFuncionarios;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public ArrayList<Dron> getListaDrones() {
@@ -50,6 +55,8 @@ public class Sistema implements Serializable {
 
     public void setListaDrones(ArrayList<Dron> listaDrones) {
         this.listaDrones = listaDrones;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public ArrayList<Carga> getListaCargas() {
@@ -58,6 +65,8 @@ public class Sistema implements Serializable {
 
     public void setListaCargas(ArrayList<Carga> listaCargas) {
         this.listaCargas = listaCargas;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public Area[] getListaAreas() {
@@ -66,6 +75,8 @@ public class Sistema implements Serializable {
 
     public void setListaAreas(Area[] listaAreas) {
         this.listaAreas = listaAreas;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public boolean nombreArticuloValido(String unNombre) {
@@ -84,6 +95,8 @@ public class Sistema implements Serializable {
         if (this.nombreArticuloValido(nombre)) {
             Articulo a = new Articulo(nombre, descripcion);
             this.getListaArticulos().add(a);
+            this.setChanged();
+            this.notifyObservers();
             ret = true;
         }
         return ret;
@@ -105,6 +118,8 @@ public class Sistema implements Serializable {
         if (numeroFuncionarioValido(numero)) {
             Funcionario f = new Funcionario(nombre, edad, numero);
             this.getListaFuncionarios().add(f);
+            this.setChanged();
+            this.notifyObservers();
             ret = true;
         }
 
@@ -127,6 +142,8 @@ public class Sistema implements Serializable {
         if (idDronValido(id)) {
             Dron d = new Dron(id, modelo, tipoCamara);
             this.getListaDrones().add(d);
+            this.setChanged();
+            this.notifyObservers();
             ret = true;
         }
         return ret;
@@ -150,6 +167,8 @@ public class Sistema implements Serializable {
         if (d != null) {
             Vuelo v = new Vuelo(exitoso, area, d, fila, coincidencias, diferencias, cantCargas, nombreArchivo);
             d.getListaVuelos().add(v);
+            this.setChanged();
+            this.notifyObservers();
             ret = true;
         }
         return ret;
@@ -176,6 +195,8 @@ public class Sistema implements Serializable {
             tableroCargas[fila][col].setCantArticulos(cantidad);
             tableroCargas[fila][col].setCodigo(codigo);
             this.getListaCargas().add(tableroCargas[fila][col]);
+            this.setChanged();
+            this.notifyObservers();
             ret = true;
         }
 
@@ -188,6 +209,8 @@ public class Sistema implements Serializable {
         unaCarga.setFuncionario(null);
         unaCarga.setArticulo(null);
         unaCarga.setCantArticulos(0);
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public Area[] crearAreas() {

@@ -9,6 +9,8 @@ import java.awt.Color;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.Observable;
+import java.util.Observer;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
 
@@ -16,7 +18,7 @@ import javax.swing.JOptionPane;
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
+public class VentanaIngresoEgresoCarga extends javax.swing.JFrame implements Observer {
 
     private Sistema sistema;
     private Util util;
@@ -27,6 +29,7 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
 
     public VentanaIngresoEgresoCarga(Sistema s) {
         this.sistema = s;
+        this.sistema.addObserver(this);
         this.util = new Util();
         this.areaActual = 0;
         initComponents();
@@ -150,6 +153,18 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
         lblCantidadEgreso = new javax.swing.JLabel();
         lblFuncionario = new javax.swing.JLabel();
         btnEgresar = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ingreso/Egreso de Carga");
@@ -350,6 +365,30 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
 
         panelIngresarEgresar.add(panelEgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        jLabel1.setText("1");
+
+        jLabel2.setText("2");
+
+        jLabel4.setText("3");
+
+        jLabel5.setText("4");
+
+        jLabel6.setText("5");
+
+        jLabel7.setText("6");
+
+        jLabel8.setText("8");
+
+        jLabel9.setText("7");
+
+        jLabel10.setText("9");
+
+        jLabel11.setText("10");
+
+        jLabel12.setText("11");
+
+        jLabel13.setText("12");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -357,7 +396,26 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(65, 65, 65)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(22, 22, 22)
+                                .addComponent(jLabel1)
+                                .addGap(24, 24, 24))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(btnAreaAnterior, javax.swing.GroupLayout.PREFERRED_SIZE, 82, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -370,7 +428,7 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGap(96, 96, 96)
                         .addComponent(lblArea)))
-                .addContainerGap(33, Short.MAX_VALUE))
+                .addContainerGap(46, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -381,12 +439,38 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
                 .addComponent(lblColumnas, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(panelEspacios, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(panelIngresarEgresar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(2, 2, 2)))
+                        .addGap(2, 2, 2))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(panelEspacios, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel2)
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel4)
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel5)
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel6)
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel7)
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel9)
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel8)
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel10)
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel11)
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel12)
+                                .addGap(7, 7, 7)
+                                .addComponent(jLabel13)
+                                .addGap(7, 7, 7)))
+                        .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAreaAnterior)
                     .addComponent(btnAreaSiguiente))
@@ -439,7 +523,7 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
                             txtCantidad.setText("");
                             txtCodigo.setText("");
                             actualizarPaneles();
-                            JOptionPane.showMessageDialog(this, "Carga "+(this.getFilaSeleccionda()+1)+":"+(this.getColumnaSeleccionada()+1)+" ingresada con éxito", "OK", JOptionPane.INFORMATION_MESSAGE);
+                            JOptionPane.showMessageDialog(this, "Carga " + (this.getFilaSeleccionda() + 1) + ":" + (this.getColumnaSeleccionada() + 1) + " ingresada con éxito", "OK", JOptionPane.INFORMATION_MESSAGE);
                         } else {
                             JOptionPane.showMessageDialog(this, "El código de carga ya está registrado", "Error", JOptionPane.ERROR_MESSAGE);
                         }
@@ -465,7 +549,19 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
     private javax.swing.JButton btnAreaSiguiente;
     private javax.swing.JButton btnEgresar;
     private javax.swing.JButton btnIngresar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JList jListArticulos;
     private javax.swing.JList jListFuncionarios;
     private javax.swing.JScrollPane jScrollPane1;
@@ -494,6 +590,7 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
 
     public class EspacioListener implements ActionListener {
+
         public void actionPerformed(ActionEvent e) {
             // este código se ejecutará al presionar el botón, obtengo cuál botón
             actualizarColorBotones();
@@ -506,5 +603,10 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame {
             columnaSeleccionada = columna;
             actualizarPaneles();
         }
+    }
+
+    @Override
+    public void update(Observable o, Object arg) {
+        actualizarPaneles();
     }
 }
