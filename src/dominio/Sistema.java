@@ -231,6 +231,7 @@ public class Sistema extends Observable implements Serializable {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("datos.dat"));
             out.writeObject(s);
             out.close();
+            //Revisar excepciones
         } catch (Exception e) {
             System.out.println("Error");
         }
@@ -242,6 +243,7 @@ public class Sistema extends Observable implements Serializable {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream("datos.dat"));
             s = (Sistema) in.readObject();
             in.close();
+            //Revisar excepciones
         } catch (Exception e) {
             s = new Sistema();
         }

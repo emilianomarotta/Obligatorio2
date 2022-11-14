@@ -170,7 +170,7 @@ public class VentanaPrincipal extends javax.swing.JFrame implements Observer {
         // TODO add your handling code here:
         this.getSistema().guardarSistema(this.getSistema());
         this.dispose();
-
+              
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
