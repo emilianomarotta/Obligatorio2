@@ -22,7 +22,6 @@ public class VentanaEstadisticas extends javax.swing.JFrame implements Observer 
         this.sistema.addObserver(this);
         initComponents();
         class DisabledItemSelectionModel extends DefaultListSelectionModel {
-
             @Override
             public void setSelectionInterval(int index0, int index1) {
                 super.setSelectionInterval(-1, -1);
@@ -48,20 +47,15 @@ public class VentanaEstadisticas extends javax.swing.JFrame implements Observer 
         }
         jListDronesConVuelos.setListData(listaDronesConVuelo.toArray(new Dron[listaDronesConVuelo.size()]));
         jListDronesSinVuelos.setListData(listaDronesSinVuelo.toArray(new Dron[listaDronesSinVuelo.size()]));
-        if (jListDronesConVuelos.getSelectedIndex() != -1) {
-            System.out.println("seleccionado");
-        }
     }
 
     public void actualizarVuelos(Dron dron) {
-        System.out.println(jListDronesConVuelos.getSelectedIndex());
         if (dron != null) {
             this.dronSeleccionado = dron;
             lblVuelosDron.setText("Vuelos del Dron: ");
             lblVuelosDron.setText(lblVuelosDron.getText() + dron.getId() + ", Cantidad de Vuelos: " + dron.getListaVuelos().size());
             ArrayList<Vuelo> listaVuelos = dron.getListaVuelos();
             jListVuelos.setListData(listaVuelos.toArray(new Vuelo[listaVuelos.size()]));
-
         }
     }
 
@@ -85,11 +79,6 @@ public class VentanaEstadisticas extends javax.swing.JFrame implements Observer 
         jListDronesConVuelos.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jListDronesConVuelosMouseClicked(evt);
-            }
-        });
-        jListDronesConVuelos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                jListDronesConVuelosValueChanged(evt);
             }
         });
         jScrollPane1.setViewportView(jListDronesConVuelos);
@@ -156,10 +145,6 @@ public class VentanaEstadisticas extends javax.swing.JFrame implements Observer 
         }
 
     }//GEN-LAST:event_jListDronesConVuelosMouseClicked
-
-    private void jListDronesConVuelosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListDronesConVuelosValueChanged
-
-    }//GEN-LAST:event_jListDronesConVuelosValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
