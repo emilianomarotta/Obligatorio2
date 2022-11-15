@@ -1,8 +1,5 @@
 package interfazGrafica;
 
-import java.awt.Component;
-import javax.swing.JOptionPane;
-
 /**
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433

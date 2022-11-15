@@ -1,12 +1,13 @@
 package dominio;
 
 import java.io.Serializable;
+import java.util.Observable;
 
 /**
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class Vuelo implements Serializable{
+public class Vuelo extends Observable implements Serializable {
 
     private boolean exitoso;
     private String area;
@@ -34,6 +35,8 @@ public class Vuelo implements Serializable{
 
     public void setExitoso(boolean exitoso) {
         this.exitoso = exitoso;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public String getArea() {
@@ -42,6 +45,8 @@ public class Vuelo implements Serializable{
 
     public void setArea(String area) {
         this.area = area;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public Dron getDron() {
@@ -50,6 +55,8 @@ public class Vuelo implements Serializable{
 
     public void setDron(Dron dron) {
         this.dron = dron;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public int getFila() {
@@ -58,6 +65,8 @@ public class Vuelo implements Serializable{
 
     public void setFila(int fila) {
         this.fila = fila;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public int getCoincidencias() {
@@ -66,6 +75,8 @@ public class Vuelo implements Serializable{
 
     public void setCoincidencias(int coincidencias) {
         this.coincidencias = coincidencias;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public int getDiferencias() {
@@ -74,6 +85,8 @@ public class Vuelo implements Serializable{
 
     public void setDiferencias(int diferencias) {
         this.diferencias = diferencias;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public int getCantCargas() {
@@ -82,6 +95,8 @@ public class Vuelo implements Serializable{
 
     public void setCantCargas(int cantCargas) {
         this.cantCargas = cantCargas;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     public String getNombreArchivo() {
@@ -90,19 +105,19 @@ public class Vuelo implements Serializable{
 
     public void setNombreArchivo(String nombreArchivo) {
         this.nombreArchivo = nombreArchivo;
+        this.setChanged();
+        this.notifyObservers();
     }
 
     @Override
     public String toString() {
-        String ret = "Archivo: "+this.getNombreArchivo()+", Area: "+this.getArea()+", Fila: "+this.getFila();        
-        if(this.isExitoso()){
-            ret = ret + ", Coincidencias: "+this.getCoincidencias()+", Diferencias: "+this.getDiferencias();
-        } else{
-            ret = ret + ", Nro líneas: "+ this.getCantCargas();
+        String ret = "Archivo: " + this.getNombreArchivo() + ", Area: " + this.getArea() + ", Fila: " + this.getFila();
+        if (this.isExitoso()) {
+            ret = ret + ", Coincidencias: " + this.getCoincidencias() + ", Diferencias: " + this.getDiferencias();
+        } else {
+            ret = ret + ", Nro líneas: " + this.getCantCargas();
         }
-        return ret ;
+        return ret;
     }
-    
-    
 
 }
