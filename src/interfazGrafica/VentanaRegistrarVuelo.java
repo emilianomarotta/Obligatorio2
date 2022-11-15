@@ -195,60 +195,10 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame implements Observe
         modelo.setRowCount(0);
         lblCoincidencias.setText("Total coincidencias: ");
         lblDiferencias.setText("Total diferencias: ");
-
         if (evt.getActionCommand().equals("ApproveSelection")) {
-
             ArchivoLectura archivo = new ArchivoLectura(jFileChooser.getSelectedFile().getAbsolutePath());
             String nombreArchivo = jFileChooser.getSelectedFile().getName();
-            ArrayList<String> lineasArchivo = new ArrayList<>();
-            //Guardamos las lineas en una lista para ver si es un vuelo valido
-            while (archivo.hayMasLineas()) {
-                lineasArchivo.add(archivo.linea());
-            }
-            //Atributos del vuelo
-            boolean exitoso = false;
-            String[] areaFila = lineasArchivo.get(1).split("#");
-            String areas = "ABCDE";
-            String letraArea = areaFila[0];
-            int numeroArea = areas.indexOf(letraArea);
-            String codigoDron = lineasArchivo.get(0);
-            int fila = Integer.parseInt(areaFila[1]) - 1;
-            int coincidencias = 0;
-            int diferencias = 0;
-            int cantCargas = (lineasArchivo.size() - 2);
-            if (cantCargas != 10) {
-                JOptionPane.showMessageDialog(this, "Vuelo no exitoso. El archivo contiene " + (lineasArchivo.size() - 2) + " líneas de cargas", "Información de vuelo", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                exitoso = true;
-                //Anadir vuelo al dron
-                Carga[] filaCargaManual = this.sistema.getListaAreas()[numeroArea].getCargas()[fila];
-                //
-                String[] codCargasManuales = new String[11];
-                String[] codCargasArchivo = new String[11];
-                codCargasArchivo[0] = "Archivo";
-                codCargasManuales[0] = "Manual";
-                for (int i = 2; i < lineasArchivo.size(); i++) {
-                    int codigoCargaArchivo = Integer.parseInt(lineasArchivo.get(i));
-                    int codigoCargaManual = filaCargaManual[i - 2].getCodigo();
-                    if (codigoCargaManual == codigoCargaArchivo) {
-                        coincidencias++;
-                    } else {
-                        diferencias++;
-                    }
-                    codCargasManuales[i - 1] = "" + codigoCargaManual;
-                    codCargasArchivo[i - 1] = "" + codigoCargaArchivo;
-                }
-                if (this.sistema.agregarVuelo(exitoso, letraArea, codigoDron, (fila+1), coincidencias, diferencias, cantCargas, nombreArchivo)) {
-                    JOptionPane.showMessageDialog(this, "Vuelo registrado con exito", "OK", JOptionPane.INFORMATION_MESSAGE);
-                    modelo.addRow(codCargasArchivo);
-                    modelo.addRow(codCargasManuales);
-                    colorearTabla(modelo);
-                    lblCoincidencias.setText(lblCoincidencias.getText() + coincidencias);
-                    lblDiferencias.setText(lblDiferencias.getText() + diferencias);
-                } else {
-                    JOptionPane.showMessageDialog(this, "Revise los datos del vuelo", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            }
+            procesarVuelo(archivo, nombreArchivo, modelo);
         } else if (evt.getActionCommand().equals("CancelSelection")) {
             this.dispose();
         } else {
@@ -256,16 +206,73 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame implements Observe
         }
     }//GEN-LAST:event_jFileChooserActionPerformed
 
+    private void procesarVuelo(ArchivoLectura archivo, String nombreArchivo, DefaultTableModel modelo) {
+        ArrayList<String> lineasArchivo = new ArrayList<>();
+        //Guardamos las lineas en una lista para ver si es un vuelo valido
+        while (archivo.hayMasLineas()) {
+            lineasArchivo.add(archivo.linea());
+        }
+        //Atributos del vuelo
+        boolean exitoso = false;
+        String[] areaFila = lineasArchivo.get(1).split("#");
+        String areas = "ABCDE";
+        String letraArea = areaFila[0];
+        int numeroArea = areas.indexOf(letraArea);
+        String codigoDron = lineasArchivo.get(0);
+        int fila = Integer.parseInt(areaFila[1]) - 1;
+        int coincidencias = 0;
+        int diferencias = 0;
+        int cantCargas = (lineasArchivo.size() - 2);
+        //Fin atributos del vuelo
+        //Chequeo de vuelo exitoso = 10 lineas de carga
+        if (cantCargas != 10) {
+            JOptionPane.showMessageDialog(this, "Vuelo no exitoso. El archivo contiene " + (lineasArchivo.size() - 2) + " líneas de cargas", "Información de vuelo", JOptionPane.INFORMATION_MESSAGE);
+        } else {
+            exitoso = true;
+            //Actualizacion de algunos datos la tabla
+            Carga[] filaCargaManual = this.sistema.getListaAreas()[numeroArea].getCargas()[fila];
+            String[] codCargasManuales = new String[11];
+            String[] codCargasArchivo = new String[11];
+            codCargasArchivo[0] = "Archivo";
+            codCargasManuales[0] = "Manual";
+            //
+            //Itero en las lineas del vuelo para ver las coindicencias con las lineas de carga manual
+            for (int i = 2; i < lineasArchivo.size(); i++) {
+                int codigoCargaArchivo = Integer.parseInt(lineasArchivo.get(i));
+                int codigoCargaManual = filaCargaManual[i - 2].getCodigo();
+                if (codigoCargaManual == codigoCargaArchivo) {
+                    coincidencias++;
+                } else {
+                    diferencias++;
+                }
+                //Voy cargando los valores en los array para luego mostrarlos en la tabla
+                codCargasManuales[i - 1] = "" + codigoCargaManual;
+                codCargasArchivo[i - 1] = "" + codigoCargaArchivo;
+            }
+            //Agrego el vuelo al dron, muestro mensaje y cargo los datos en la tabla con los colores
+            if (this.sistema.agregarVuelo(exitoso, letraArea, codigoDron, (fila + 1), coincidencias, diferencias, cantCargas, nombreArchivo)) {
+                JOptionPane.showMessageDialog(this, "Vuelo registrado con exito", "OK", JOptionPane.INFORMATION_MESSAGE);
+                modelo.addRow(codCargasArchivo);
+                modelo.addRow(codCargasManuales);
+                colorearTabla(modelo);
+                lblCoincidencias.setText(lblCoincidencias.getText() + coincidencias);
+                lblDiferencias.setText(lblDiferencias.getText() + diferencias);
+            } else {
+                JOptionPane.showMessageDialog(this, "Revise los datos del vuelo.\nNo se encontró el Dron en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+    }
+
     public void colorearTabla(DefaultTableModel modelo) {
         for (int i = 0; i < 11; i++) {
-            changeTable(tableVuelo, i, modelo.getValueAt(0, i), modelo.getValueAt(1, i));
+            configurarTabla(tableVuelo, i, modelo.getValueAt(0, i), modelo.getValueAt(1, i));
         }
         tableVuelo.setRowHeight(22);
         tableVuelo.setRowSelectionAllowed(false);
         tableVuelo.getTableHeader().setReorderingAllowed(false);
     }
 
-    public void changeTable(JTable table, int column_index, Object valorManual, Object valorArchivo) {
+    public void configurarTabla(JTable table, int column_index, Object valorManual, Object valorArchivo) {
         table.getColumnModel().getColumn(column_index).setCellRenderer(new DefaultTableCellRenderer() {
             @Override
             public void setHorizontalAlignment(int alignment) {
@@ -319,7 +326,6 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame implements Observe
 
     @Override
     public void update(Observable o, Object arg) {
-        //colorearTabla((DefaultTableModel) arg);
     }
 
 }

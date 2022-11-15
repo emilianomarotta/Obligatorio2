@@ -162,7 +162,7 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame implements O
                     if (this.getUtil().esNumeroValido(txtNumero.getText())) {
                         int numeroFuncionario = Integer.parseInt(txtNumero.getText());
                         if (this.sistema.agregarFuncionario(nombreFuncionario, edadFuncionario, numeroFuncionario)) {
-                            //Todo OK:
+                            //Todo validado correctamente
                             txtNombre.setText("");
                             txtEdad.setText("");
                             txtNumero.setText("");

@@ -134,10 +134,8 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame implements Obse
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
-        // TODO add your handling code here:
         String nombreArticulo = txtNombre.getText();
         String descripcionArticulo = txtDescripcion.getText();
-        boolean nombreUnico = this.getSistema().nombreArticuloValido(nombreArticulo);
         if (nombreArticulo.length() > 0) {
             if (descripcionArticulo.length() > 0) {
                 if (this.sistema.agrearArticulo(nombreArticulo, descripcionArticulo)) {
