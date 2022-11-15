@@ -61,6 +61,7 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame implements Observe
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Registro de Vuelo");
+        setResizable(false);
 
         jFileChooser.setDialogTitle("");
         jFileChooser.addActionListener(new java.awt.event.ActionListener() {
@@ -251,12 +252,12 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame implements Observe
             }
             //Agrego el vuelo al dron, muestro mensaje y cargo los datos en la tabla con los colores
             if (this.sistema.agregarVuelo(exitoso, letraArea, codigoDron, (fila + 1), coincidencias, diferencias, cantCargas, nombreArchivo)) {
-                JOptionPane.showMessageDialog(this, "Vuelo registrado con exito", "OK", JOptionPane.INFORMATION_MESSAGE);
                 modelo.addRow(codCargasArchivo);
                 modelo.addRow(codCargasManuales);
                 colorearTabla(modelo);
                 lblCoincidencias.setText(lblCoincidencias.getText() + coincidencias);
                 lblDiferencias.setText(lblDiferencias.getText() + diferencias);
+                JOptionPane.showMessageDialog(this, "Vuelo registrado con exito", "OK", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(this, "Revise los datos del vuelo.\nNo se encontró el Dron en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
             }

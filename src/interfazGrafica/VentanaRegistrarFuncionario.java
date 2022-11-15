@@ -53,6 +53,7 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame implements O
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Funcionarios");
+        setResizable(false);
 
         lblNombre.setText("Nombre");
 

@@ -149,21 +149,22 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame implements Obs
         lblCantidadEgreso = new javax.swing.JLabel();
         lblFuncionario = new javax.swing.JLabel();
         btnEgresar = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        lblFila1 = new javax.swing.JLabel();
+        lblFila2 = new javax.swing.JLabel();
+        lblFila3 = new javax.swing.JLabel();
+        lblFila4 = new javax.swing.JLabel();
+        lblFila5 = new javax.swing.JLabel();
+        lblFila6 = new javax.swing.JLabel();
+        lblFila8 = new javax.swing.JLabel();
+        lblFila7 = new javax.swing.JLabel();
+        lblFila9 = new javax.swing.JLabel();
+        lblFila10 = new javax.swing.JLabel();
+        lblFila11 = new javax.swing.JLabel();
+        lblFila12 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Ingreso/Egreso de Carga");
+        setResizable(false);
 
         panelEspacios.setBackground(new java.awt.Color(255, 255, 204));
         panelEspacios.setLayout(new java.awt.GridLayout(12, 10));
@@ -361,29 +362,29 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame implements Obs
 
         panelIngresarEgresar.add(panelEgreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        jLabel1.setText("1");
+        lblFila1.setText("1");
 
-        jLabel2.setText("2");
+        lblFila2.setText("2");
 
-        jLabel4.setText("3");
+        lblFila3.setText("3");
 
-        jLabel5.setText("4");
+        lblFila4.setText("4");
 
-        jLabel6.setText("5");
+        lblFila5.setText("5");
 
-        jLabel7.setText("6");
+        lblFila6.setText("6");
 
-        jLabel8.setText("8");
+        lblFila8.setText("8");
 
-        jLabel9.setText("7");
+        lblFila7.setText("7");
 
-        jLabel10.setText("9");
+        lblFila9.setText("9");
 
-        jLabel11.setText("10");
+        lblFila10.setText("10");
 
-        jLabel12.setText("11");
+        lblFila11.setText("11");
 
-        jLabel13.setText("12");
+        lblFila12.setText("12");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -395,22 +396,22 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame implements Obs
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(22, 22, 22)
-                                .addComponent(jLabel1)
+                                .addComponent(lblFila1)
                                 .addGap(24, 24, 24))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(lblFila4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFila5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFila6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFila8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFila9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFila3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFila7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFila10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFila2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFila11, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lblFila12, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -442,29 +443,29 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame implements Obs
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(panelEspacios, javax.swing.GroupLayout.PREFERRED_SIZE, 283, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel1)
+                                .addComponent(lblFila1)
                                 .addGap(7, 7, 7)
-                                .addComponent(jLabel2)
+                                .addComponent(lblFila2)
                                 .addGap(7, 7, 7)
-                                .addComponent(jLabel4)
+                                .addComponent(lblFila3)
                                 .addGap(7, 7, 7)
-                                .addComponent(jLabel5)
+                                .addComponent(lblFila4)
                                 .addGap(7, 7, 7)
-                                .addComponent(jLabel6)
+                                .addComponent(lblFila5)
                                 .addGap(7, 7, 7)
-                                .addComponent(jLabel7)
+                                .addComponent(lblFila6)
                                 .addGap(7, 7, 7)
-                                .addComponent(jLabel9)
+                                .addComponent(lblFila7)
                                 .addGap(7, 7, 7)
-                                .addComponent(jLabel8)
+                                .addComponent(lblFila8)
                                 .addGap(7, 7, 7)
-                                .addComponent(jLabel10)
+                                .addComponent(lblFila9)
                                 .addGap(7, 7, 7)
-                                .addComponent(jLabel11)
+                                .addComponent(lblFila10)
                                 .addGap(7, 7, 7)
-                                .addComponent(jLabel12)
+                                .addComponent(lblFila11)
                                 .addGap(7, 7, 7)
-                                .addComponent(jLabel13)
+                                .addComponent(lblFila12)
                                 .addGap(7, 7, 7)))
                         .addGap(18, 18, 18)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -545,19 +546,7 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame implements Obs
     private javax.swing.JButton btnAreaSiguiente;
     private javax.swing.JButton btnEgresar;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JList jListArticulos;
     private javax.swing.JList jListFuncionarios;
     private javax.swing.JScrollPane jScrollPane1;
@@ -570,6 +559,18 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame implements Obs
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JLabel lblCodigoIngreso;
     private javax.swing.JLabel lblColumnas;
+    private javax.swing.JLabel lblFila1;
+    private javax.swing.JLabel lblFila10;
+    private javax.swing.JLabel lblFila11;
+    private javax.swing.JLabel lblFila12;
+    private javax.swing.JLabel lblFila2;
+    private javax.swing.JLabel lblFila3;
+    private javax.swing.JLabel lblFila4;
+    private javax.swing.JLabel lblFila5;
+    private javax.swing.JLabel lblFila6;
+    private javax.swing.JLabel lblFila7;
+    private javax.swing.JLabel lblFila8;
+    private javax.swing.JLabel lblFila9;
     private javax.swing.JLabel lblFuncionario;
     private javax.swing.JLabel lblFuncionarios;
     private javax.swing.JLabel lblTitulo;

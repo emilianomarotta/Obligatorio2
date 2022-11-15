@@ -74,16 +74,20 @@ public class VentanaEstadisticas extends javax.swing.JFrame implements Observer 
         lblVuelosDron = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setResizable(false);
 
         jListDronesConVuelos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
-        jListDronesConVuelos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jListDronesConVuelosMouseClicked(evt);
+        jListDronesConVuelos.setAutoscrolls(false);
+        jListDronesConVuelos.setFixedCellHeight(17);
+        jListDronesConVuelos.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
+            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
+                jListDronesConVuelosValueChanged(evt);
             }
         });
         jScrollPane1.setViewportView(jListDronesConVuelos);
 
         jListDronesSinVuelos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListDronesSinVuelos.setFixedCellHeight(17);
         jScrollPane2.setViewportView(jListDronesSinVuelos);
 
         lblDronesConVuelo.setText("Drones con vuelo");
@@ -101,18 +105,22 @@ public class VentanaEstadisticas extends javax.swing.JFrame implements Observer 
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(42, 42, 42)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblVuelosDron)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDronesConVuelo))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblDronesConVuelo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(lblDronesSinVuelo)))
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(lblDronesSinVuelo)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(96, Short.MAX_VALUE))
+                .addGap(42, 42, 42))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,20 +139,20 @@ public class VentanaEstadisticas extends javax.swing.JFrame implements Observer 
                 .addComponent(lblVuelosDron)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addGap(35, 35, 35))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jListDronesConVuelosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListDronesConVuelosMouseClicked
-        if (jListDronesConVuelos.getSelectedIndex() != -1) {
+    private void jListDronesConVuelosValueChanged(javax.swing.event.ListSelectionEvent evt) {//GEN-FIRST:event_jListDronesConVuelosValueChanged
+
+        if (jListDronesConVuelos.getSelectedIndex() > -1) {
             Dron dron = jListDronesConVuelos.getSelectedValue();
             this.dronSeleccionado = dron;
             actualizarVuelos(dron);
         }
-
-    }//GEN-LAST:event_jListDronesConVuelosMouseClicked
+    }//GEN-LAST:event_jListDronesConVuelosValueChanged
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

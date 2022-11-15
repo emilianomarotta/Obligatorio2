@@ -45,6 +45,7 @@ public class VentanaRegistrarArticulo extends javax.swing.JFrame implements Obse
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Artículos");
+        setResizable(false);
 
         lblNombre.setText("Nombre");
 

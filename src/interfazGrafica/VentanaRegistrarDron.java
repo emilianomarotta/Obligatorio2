@@ -48,6 +48,7 @@ public class VentanaRegistrarDron extends javax.swing.JFrame implements Observer
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Drones");
+        setResizable(false);
 
         lblIdentificacion.setText("Identificación");
 
