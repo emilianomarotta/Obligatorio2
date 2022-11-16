@@ -221,16 +221,16 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
         int coincidencias = 0;
         int diferencias = 0;
         int cantCargas = (lineasArchivo.size() - 2);
+        String[] codCargasManuales = new String[11];
+        String[] codCargasArchivo = new String[11];
         //Fin atributos del vuelo
         //Chequeo de vuelo exitoso = 10 lineas de carga
-        if (cantCargas != 10) {
-            JOptionPane.showMessageDialog(this, "Vuelo no exitoso. El archivo contiene " + (lineasArchivo.size() - 2) + " líneas de cargas", "Información de vuelo", JOptionPane.INFORMATION_MESSAGE);
-        } else {
+        if (cantCargas == 10) {
+        
             exitoso = true;
             //Actualizacion de algunos datos la tabla
             Carga[] filaCargaManual = this.sistema.getListaAreas()[numeroArea].getCargas()[fila];
-            String[] codCargasManuales = new String[11];
-            String[] codCargasArchivo = new String[11];
+            
             codCargasArchivo[0] = "Archivo";
             codCargasManuales[0] = "Manual";
             //
@@ -247,18 +247,28 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
                 codCargasManuales[i - 1] = "" + codigoCargaManual;
                 codCargasArchivo[i - 1] = "" + codigoCargaArchivo;
             }
+            }
             //Agrego el vuelo al dron, muestro mensaje y cargo los datos en la tabla con los colores
             if (this.sistema.agregarVuelo(exitoso, letraArea, codigoDron, (fila + 1), coincidencias, diferencias, cantCargas, nombreArchivo)) {
+                if (exitoso) {
                 modelo.addRow(codCargasArchivo);
                 modelo.addRow(codCargasManuales);
                 colorearTabla(modelo);
                 lblCoincidencias.setText(lblCoincidencias.getText() + coincidencias);
                 lblDiferencias.setText(lblDiferencias.getText() + diferencias);
-                JOptionPane.showMessageDialog(this, "Vuelo registrado con exito", "OK", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, "Vuelo exitoso registrado con éxito", "OK", JOptionPane.INFORMATION_MESSAGE);
+                } else {
+                JOptionPane.showMessageDialog(this, "Vuelo no exitoso registrado con éxito.\nEl archivo contiene " + (lineasArchivo.size() - 2) + " líneas de cargas", "Información de vuelo", JOptionPane.INFORMATION_MESSAGE);
+
+                }
+                
+                
+                
+                
             } else {
                 JOptionPane.showMessageDialog(this, "Revise los datos del vuelo.\nNo se encontró el Dron en el sistema", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        }
+        
     }
 
     public void colorearTabla(DefaultTableModel modelo) {
