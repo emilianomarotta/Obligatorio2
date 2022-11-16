@@ -5,8 +5,6 @@ import dominio.*;
 import java.awt.Color;
 import java.awt.Component;
 import java.util.ArrayList;
-import java.util.Observable;
-import java.util.Observer;
 import javax.accessibility.AccessibleContext;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -21,13 +19,12 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Emiliano Marotta 187884 - Sebastian Borjas 303433
  */
-public class VentanaRegistrarVuelo extends javax.swing.JFrame implements Observer {
+public class VentanaRegistrarVuelo extends javax.swing.JFrame {
 
     private Sistema sistema;
 
     public VentanaRegistrarVuelo(Sistema s) {
         this.sistema = s;
-        this.sistema.addObserver(this);
         //Traductir jFileChooser
         UIManager.put("FileChooser.openButtonText", "Abrir");
         UIManager.put("FileChooser.cancelButtonText", "Cancelar");
@@ -323,10 +320,6 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame implements Observe
         jFileChooser.setAcceptAllFileFilterUsed(false);
         FileNameExtensionFilter filter = new FileNameExtensionFilter("Archivos.txt", "txt");
         jFileChooser.setFileFilter(filter);
-    }
-
-    @Override
-    public void update(Observable o, Object arg) {
     }
 
 }

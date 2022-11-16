@@ -2,12 +2,15 @@ package dominio;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Observable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -231,8 +234,8 @@ public class Sistema extends Observable implements Serializable {
             ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("datos.dat"));
             out.writeObject(s);
             out.close();
-            //Revisar excepciones
-        } catch (Exception e) {
+            //Possibles excepciones https://docs.oracle.com/en/java/javase/13/docs/specs/serialization/exceptions.html
+        } catch (IOException e) {
             System.out.println("Error");
         }
     }
@@ -243,9 +246,12 @@ public class Sistema extends Observable implements Serializable {
             ObjectInputStream in = new ObjectInputStream(new FileInputStream("datos.dat"));
             s = (Sistema) in.readObject();
             in.close();
-            //Revisar excepciones
-        } catch (Exception e) {
+            
+         //Excepciones de readObject() https://docs.oracle.com/en/java/javase/13/docs/specs/serialization/input.html#the-readobject-method
+
+        } catch (IOException | ClassNotFoundException e) {
             s = new Sistema();
+
         }
         return s;
     }
