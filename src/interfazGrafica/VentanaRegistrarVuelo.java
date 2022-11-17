@@ -44,7 +44,7 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
         UIManager.put("FileChooser.cancelButtonToolTipText","Cancelar y salir");
         UIManager.put("FileChooser.filesOfTypeLabelText", "Tipo");
         UIManager.put("FileChooser.fileNameLabelText", "Archivo");
-        UIManager.put("FileChooser.lookInLabelText", "Mirar en");
+        UIManager.put("FileChooser.lookInLabelText", "Buscar en");
     }
 
     /**
