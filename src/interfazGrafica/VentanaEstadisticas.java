@@ -95,6 +95,7 @@ public class VentanaEstadisticas extends javax.swing.JFrame implements Observer 
         lblDronesSinVuelo.setText("Drones sin vuelo");
 
         jListVuelos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListVuelos.setFixedCellHeight(17);
         jScrollPane3.setViewportView(jListVuelos);
 
         lblVuelosDron.setText("Vuelos del Dron: ");
@@ -110,15 +111,11 @@ public class VentanaEstadisticas extends javax.swing.JFrame implements Observer 
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblDronesConVuelo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(lblDronesConVuelo))
                         .addGap(64, 64, 64)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lblDronesSinVuelo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(lblDronesSinVuelo)))
                     .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(42, 42, 42))
         );

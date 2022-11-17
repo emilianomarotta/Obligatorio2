@@ -39,6 +39,6 @@ public class Articulo extends Observable implements Serializable{
 
     @Override
     public String toString() {
-        return this.getNombre();
+        return this.getNombre() + " ("+ this.getDescripcion() +")";
     }
 }

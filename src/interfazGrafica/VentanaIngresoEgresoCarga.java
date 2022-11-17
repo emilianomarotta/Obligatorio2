@@ -214,9 +214,12 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame implements Obs
         });
 
         jListFuncionarios.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListFuncionarios.setFixedCellHeight(16);
         jScrollPane1.setViewportView(jListFuncionarios);
 
         jListArticulos.setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jListArticulos.setFixedCellHeight(16);
+        jListArticulos.setValueIsAdjusting(true);
         jScrollPane2.setViewportView(jListArticulos);
 
         javax.swing.GroupLayout panelIngresoLayout = new javax.swing.GroupLayout(panelIngreso);
@@ -280,7 +283,7 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame implements Obs
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnIngresar))
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(45, Short.MAX_VALUE))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         panelIngresarEgresar.add(panelIngreso, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
