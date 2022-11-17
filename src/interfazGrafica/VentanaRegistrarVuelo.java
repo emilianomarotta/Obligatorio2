@@ -25,16 +25,26 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
 
     public VentanaRegistrarVuelo(Sistema s) {
         this.sistema = s;
-        //Traductir jFileChooser
-        UIManager.put("FileChooser.openButtonText", "Abrir");
-        UIManager.put("FileChooser.cancelButtonText", "Cancelar");
-        UIManager.put("FileChooser.filesOfTypeLabelText", "Tipo");
-        UIManager.put("FileChooser.fileNameLabelText", "Archivo");
-        UIManager.put("FileChooser.lookInLabelText", "Mirar en");
+        traducirFileChooser();
         initComponents();
         tableVuelo.getTableHeader().setReorderingAllowed(false);
         configurarFileChooser();
 
+    }
+    
+    public void traducirFileChooser(){
+    UIManager.put("FileChooser.openButtonText", "Abrir");
+        UIManager.put("FileChooser.openButtonToolTipText", "Abrir archivo seleccionado");
+        UIManager.put("FileChooser.newFolderToolTipText","Crear nueva carpeta");
+        UIManager.put("FileChooser.upFolderToolTipText", "Volver a carpeta contenedora");
+        UIManager.put("FileChooser.homeFolderToolTipText","Inicio");
+        UIManager.put("FileChooser.listViewButtonToolTipText","Lista");
+        UIManager.put("FileChooser.detailsViewButtonToolTipText", "Detalles");
+        UIManager.put("FileChooser.cancelButtonText", "Cancelar");
+        UIManager.put("FileChooser.cancelButtonToolTipText","Cancelar y salir");
+        UIManager.put("FileChooser.filesOfTypeLabelText", "Tipo");
+        UIManager.put("FileChooser.fileNameLabelText", "Archivo");
+        UIManager.put("FileChooser.lookInLabelText", "Mirar en");
     }
 
     /**
