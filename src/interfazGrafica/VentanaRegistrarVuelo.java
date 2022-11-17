@@ -266,6 +266,8 @@ public class VentanaRegistrarVuelo extends javax.swing.JFrame {
                 colorearTabla(modelo);
                 lblCoincidencias.setText(lblCoincidencias.getText() + coincidencias);
                 lblDiferencias.setText(lblDiferencias.getText() + diferencias);
+                lblArea.setText(lblArea.getText() +" "+ letraArea);
+                lblFila.setText(lblFila.getText() +" "+ (fila + 1));
                 JOptionPane.showMessageDialog(this, "Vuelo exitoso registrado con éxito", "OK", JOptionPane.INFORMATION_MESSAGE);
                 } else {
                 JOptionPane.showMessageDialog(this, "Vuelo no exitoso registrado con éxito.\nEl archivo contiene " + (lineasArchivo.size() - 2) + " líneas de cargas", "Información de vuelo", JOptionPane.INFORMATION_MESSAGE);
