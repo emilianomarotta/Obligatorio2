@@ -155,7 +155,7 @@ public class Sistema extends Observable implements Serializable {
         ArrayList<Dron> listaD = this.getListaDrones();
         for (int i = 0; i < listaD.size() && d == null; i++) {
             Dron unDron = listaD.get(i);
-            if (unDron.getId().equals(id)) {
+            if (unDron.getId().equalsIgnoreCase(id)) {
                 d = unDron;
             }
         }
