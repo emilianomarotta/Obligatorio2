@@ -453,7 +453,7 @@
             </Component>
             <Component class="javax.swing.JLabel" name="lblTituloArticulo">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Articulo:"/>
+                <Property name="text" type="java.lang.String" value="Art&#xed;culo:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="lblArticulo">

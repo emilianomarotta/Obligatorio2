@@ -292,7 +292,7 @@ public class VentanaIngresoEgresoCarga extends javax.swing.JFrame implements Obs
 
         lblTitulo.setText("Egreso");
 
-        lblTituloArticulo.setText("Articulo:");
+        lblTituloArticulo.setText("Artículo:");
 
         lblTituloCodigo.setText("Código:");
 

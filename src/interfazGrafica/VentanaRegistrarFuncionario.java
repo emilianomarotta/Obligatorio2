@@ -75,7 +75,7 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame implements O
 
             },
             new String [] {
-                "Nombre", "Edad", "Numero"
+                "Nombre", "Edad", "Número"
             }
         ) {
             Class[] types = new Class [] {
@@ -102,7 +102,7 @@ public class VentanaRegistrarFuncionario extends javax.swing.JFrame implements O
             tableListaFuncionarios.getColumnModel().getColumn(2).setResizable(false);
         }
 
-        lblNumero.setText("Numero");
+        lblNumero.setText("Número");
 
         txtNumero.setNextFocusableComponent(btnAgregar);
 
